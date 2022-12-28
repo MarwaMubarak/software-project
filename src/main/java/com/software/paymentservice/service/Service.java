@@ -1,12 +1,11 @@
 
 package com.software.paymentservice.service;
-import java.util.Scanner;
 
 import  com.software.paymentservice.payment.*;
 import  com.software.paymentservice.provider.FactoryOfServiceProviderFactory;
 import  com.software.paymentservice.provider.ServiceProvider;
 import  com.software.paymentservice.provider.ServiceProviderFactory;
-import  com.software.paymentservice.user.Account;
+import com.software.paymentservice.user.AccountController;
 
 public abstract class Service {
 	static public int id;
@@ -78,7 +77,7 @@ public abstract class Service {
         discount=getDiscounts();
         setCost(payment.pay(discount));        
         if(cost!=-1) {
-        	Account.user.addCompeleteServices(this);
+        	AccountController.userController.addCompeleteServices(this);
         	provider.setInfo(payment.getAmount());
         	getInfo();
         	setId(id+1);	

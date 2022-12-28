@@ -7,7 +7,7 @@ import com.software.paymentservice.Data.*;
 
 import com.software.paymentservice.admin.Admin;
 import com.software.paymentservice.service.Search;
-import com.software.paymentservice.user.Account;
+import com.software.paymentservice.user.AccountController;
 
 public class UI {
     static Scanner cin = new Scanner(System.in);
@@ -68,17 +68,17 @@ public class UI {
 
     public static void loginSteps() {
         Invoker invoker = new Invoker();
-        boolean success = false;
-        while (!success) {
+        String success = "Login Failed";
+        while (success.equals("Login Failed")) {
             System.out.println("Enter your Email:");
             String email_userName = cin.next();
             System.out.println("Enter your Password:");
             String password = cin.next();
 
-            Account account = new Account(email_userName, email_userName, password);
-            invoker.setCommand(new Login(account));
+            AccountController accountController = new AccountController(email_userName, email_userName, password);
+            invoker.setCommand(new Login(accountController));
             success = invoker.doAction();
-            if (!success) System.out.println(" Eamil or Password not correct!, Please try again..");
+            System.out.println(success);
             System.out.println("----------------------------------------------------------");
 
         }
@@ -86,25 +86,25 @@ public class UI {
 
     public static void signupSteps() {
         Invoker invoker = new Invoker();
-        boolean success = false;
-        while (!success) {
+        String success = "Sign up Successfully";
+        while (success.equals("Sign up Successfully")) {
             System.out.println("Enter your Userame:");
             String username = cin.next();
             System.out.println("Enter your Email:");
             String email = cin.next();
             System.out.println("Enter your Password:");
             String password = cin.next();
-            Account account = new Account(username, email, password);
-            invoker.setCommand(new Register(account));
+            AccountController accountController = new AccountController(username, email, password);
+            invoker.setCommand(new Register(accountController));
             success = invoker.doAction();
-            if (!success) System.out.println(" eamil or userName are used!, please try again");
+            System.out.println(success);
             System.out.println("----------------------------------------------------------");
         }
     }
 
     public static void signedinUser() {
         while (true) {
-            System.out.println("Name: " + Account.user.userName + "\nBalance: " + Account.user.getMyWallet().getBalance() + "\n");
+            System.out.println("Name: " + AccountController.userController.getUserModel().getUserName() + "\nBalance: " + AccountController.userController.getUserModel().getMyWallet().getBalance() + "\n");
             System.out.println("----------------------------------------------------------");
 
             UI.userOptions();
@@ -149,10 +149,10 @@ public class UI {
 
                 }
 
-            } else if (userChoice == 3) Account.user.showRefunds();
-            else if (userChoice == 4) Account.user.showDiscounts();
+            } else if (userChoice == 3) AccountController.userController.showRefunds();
+            else if (userChoice == 4) AccountController.userController.showDiscounts();
             else if (userChoice == 5) {
-                Account.user.addMoneyToWallet();
+                AccountController.userController.addMoneyToWallet();
             } else if (userChoice == 6) appSteps();
             else
                 System.out.println("Invalid Input, You should choose from user's options!");

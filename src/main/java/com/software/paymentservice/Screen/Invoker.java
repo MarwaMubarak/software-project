@@ -7,7 +7,7 @@ public class Invoker {
 		this.command=command;
 		
 	}
-	public boolean doAction()
+	public String doAction()
 	{
 		return command.excute();
 	}

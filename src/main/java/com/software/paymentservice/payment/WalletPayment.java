@@ -2,7 +2,7 @@ package com.software.paymentservice.payment;
 
 import java.util.Scanner;
 
-import  com.software.paymentservice.user.Account;
+import com.software.paymentservice.user.AccountController;
 
 public class WalletPayment implements Payment{
 	
@@ -17,8 +17,8 @@ public class WalletPayment implements Payment{
 			amount= new Scanner(System.in).nextDouble();
 		}
 		double amountAfterDiscounts = (1-discount)*amount;
-		if(Account.user.getMyWallet().getBalance()>=amountAfterDiscounts+getTaxes()) {
-			Account.user.getMyWallet().spend(amountAfterDiscounts+getTaxes());
+		if(AccountController.userController.getUserModel().getMyWallet().getBalance()>=amountAfterDiscounts+getTaxes()) {
+			AccountController.userController.getUserModel().getMyWallet().spend(amountAfterDiscounts+getTaxes());
 			return amountAfterDiscounts+getTaxes();
 		}
 		else {

@@ -3,26 +3,23 @@ import  com.software.paymentservice.user.*;
 
 import java.util.*;
 
-import  com.software.paymentservice.provider.ServiceProvider;
-import  com.software.paymentservice.service.*;
-
 import  com.software.paymentservice.service.*;
 
 public class SavedData {
-	
-	public  Map<String, Map<Integer,ServiceStatePair>> usersCompleteService = new HashMap<String,Map<Integer,ServiceStatePair>>(); 
-	
+
+	public  Map<String, Map<Integer,ServiceStatePair>> usersCompleteService = new HashMap<String,Map<Integer,ServiceStatePair>>();
+
 	public Map<String, Service> services = new HashMap<String, Service>();
-	
-	private Map<Integer,User> refundServices=new HashMap<Integer, User>();
-		
-	private Map<String, User> userData = new HashMap<String, User>();
-	
+
+	private Map<Integer, UserController> refundServices=new HashMap<Integer, UserController>();
+
+	private Map<String, UserController> userData = new HashMap<String, UserController>();
+
 	private static SavedData savedData = null;
-	
-	
-	
-	public Map<Integer,User> getRefundService(){
+
+
+
+	public Map<Integer, UserController> getRefundService(){
 		return refundServices;
 	}
 	private SavedData() {
@@ -31,26 +28,26 @@ public class SavedData {
 		services.put("Landline", new LandlineService());
 		services.put("Donation", new DonationService());
 	}
-	
-	
+
+
 	public static SavedData getObj(){
 		if(savedData==null)savedData = new SavedData();
-		
+
 		return savedData;
 	}
-	
-	public Map<String, User> getUserData(){
+
+	public Map<String, UserController> getUserData(){
 		return userData;
 	}
-	
+
 	public Map<Integer,ServiceStatePair> getUsersCompleteService() {
-		return usersCompleteService.get(Account.user.email);
-	}
-	
-	public void setUsersCompleteService(Map<Integer,ServiceStatePair> userCompliete) {
-		usersCompleteService.put(Account.user.email,userCompliete);
+		return usersCompleteService.get(AccountController.userController.getUserModel().getEmail());
 	}
 
-	
-	
+	public void setUsersCompleteService(Map<Integer,ServiceStatePair> userCompliete) {
+		usersCompleteService.put(AccountController.userController.getUserModel().getEmail(),userCompliete);
+	}
+
+
+
 }
