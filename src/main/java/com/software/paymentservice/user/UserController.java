@@ -47,70 +47,49 @@ public class UserController {
         return s;
     }
 
-
-    public void showRefunds() {
-        System.out.println("Press 1. Show Complete Services and make refund request");
-        System.out.println("Press 2. Show Pending Services");
-        System.out.println("Press 3. Show Accepted Services");
-        System.out.println("Press 4. Show Rejected Services");
-        int option = new Scanner(System.in).nextInt();
+    public String showPendingRequest() {
         int empty = 0;
-        if (option == 1) {
-            for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
-                if (current.getValue().getState() == 0) {
-                    System.out.println("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName());
-                    empty++;
-                }
-
+        String s = "";
+        for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
+            if (current.getValue().getState() == 2) {
+                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                empty++;
             }
-            if (empty != 0) {
-
-
-                while (true) {
-                    System.out.println("Enter service's ID : ");
-                    int id = new Scanner(System.in).nextInt();
-                    String success1 = AccountController.userController.refund(id);
-                    userModel.getCompleteServices().get(id).setState(2);
-                    if (success1 == "")
-                        break;
-                }
-            } else {
-                System.out.println("Empty..");
-            }
-
-        } else if (option == 2) {
-            for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
-                if (current.getValue().getState() == 2) {
-                    System.out.println("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName());
-                    empty++;
-                }
-            }
-            if (empty == 0)
-                System.out.println("Empty..");
-
-
-        } else if (option == 3) {
-            for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
-                if (current.getValue().getState() == 1) {
-                    System.out.println("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName());
-                    empty++;
-                }
-            }
-            if (empty == 0)
-                System.out.println("Empty..");
-
-        } else if (option == 4) {
-            for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
-                if (current.getValue().getState() == -1) {
-                    System.out.println("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName());
-                    empty++;
-                }
-            }
-            if (empty == 0)
-                System.out.println("Empty..");
         }
+        if (empty == 0)
+            return ("Empty..");
+        return s;
+    }
+
+    public String showAcceptedService() {
+        int empty = 0;
+        String s = "";
+        for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
+            if (current.getValue().getState() == 1) {
+                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                empty++;
+            }
+        }
+        if (empty == 0)
+            return ("Empty..");
+        return s;
 
     }
+
+    public String showRejectedRequest() {
+        int empty = 0;
+        String s = "";
+        for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
+            if (current.getValue().getState() == -1) {
+                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                empty++;
+            }
+        }
+        if (empty == 0)
+            return ("Empty..");
+        return s;
+    }
+
 
     public String refund(Integer ID) {
         if (!userModel.getCompleteServices().containsKey(ID)) {

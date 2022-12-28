@@ -30,6 +30,18 @@ public class UserServiceController {
     public String refund(@RequestBody Request<Integer> ID) {
         return accountController.userController.refund(ID.value);
     }
+    @GetMapping(value = "/showPendingRequest")
+    public String showPendingRequest() {
+        return accountController.userController.showPendingRequest();
+    }
+    @GetMapping(value = "/showAcceptedService")
+    public String showAcceptedService() {
+        return accountController.userController.showAcceptedService();
+    }
+    @GetMapping(value = "/showRejectedRequest")
+    public String showRejectedRequest() {
+        return accountController.userController.showRejectedRequest();
+    }
 
 
 }
