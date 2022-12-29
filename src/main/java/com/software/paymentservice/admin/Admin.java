@@ -11,7 +11,6 @@ import com.software.paymentservice.Screen.UI;
 import com.software.paymentservice.discount.Discount;
 import com.software.paymentservice.discount.DiscountFactory;
 import com.software.paymentservice.user.UserController;
-import com.software.paymentservice.user.UserModel;
 
 public class Admin {
     Discount discount;
@@ -55,7 +54,7 @@ public class Admin {
         obj.getRefundService().remove(id);
     }
 
-    public void cashAvaliablity() {
+    public void cashAvailability() {
         System.out.println("Enter Service Name to set Cash avaliablity: ");
         UI.servicesOptions();
         String serviceName = new Scanner(System.in).next();
@@ -64,4 +63,25 @@ public class Admin {
         SavedData.getObj().services.get(serviceName).setCash(visible);
 
     }
+    public String showPaymentTransaction(){
+        String s="";
+       
+        return s;
+    }
+    public String showAddToWalletTransaction(){
+        String s="";
+        for (Entry<String,String>entry:SavedData.getObj().getWalletTransactions().entrySet()){
+            s+=entry.getValue();
+        }
+        return s;
+
+    }
+    public String showRefundTransaction(){
+        String s="";
+        for (Entry<Integer, UserController> currentRefund : SavedData.getObj().getRefundService().entrySet()) {
+
+        }
+        return s;
+    }
+
 }

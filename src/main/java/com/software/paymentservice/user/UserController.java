@@ -106,6 +106,9 @@ public class UserController {
         if (userModel.getMyCreditCard().getBalance() >= amount) {
             userModel.getMyCreditCard().spend(amount);
             userModel.getMyWallet().add(amount);
+            String s= SavedData.getObj().getWalletTransactions().get(userModel.getEmail());
+            s+=userModel.getEmail()+" Added "+amount+"\n";
+            SavedData.getObj().getWalletTransactions().put(userModel.getEmail(),s);
             return ("Done Successfully..");
 
         } else

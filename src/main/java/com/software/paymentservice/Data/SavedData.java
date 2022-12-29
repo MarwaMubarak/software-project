@@ -16,6 +16,12 @@ public class SavedData {
 
 	private Map<String, UserController> userData = new HashMap<String, UserController>();
 
+	public Map<String, String> getWalletTransactions() {
+		return walletTransactions;
+	}
+
+	private Map<String,String>walletTransactions=new HashMap<>();
+
 	private static SavedData savedData = null;
 
 

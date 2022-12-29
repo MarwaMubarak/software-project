@@ -178,7 +178,7 @@ public class UI {
                 admin.addDiscount();
             } else if (adminChoice == 3) {
                 Admin admin = new Admin();
-                admin.cashAvaliablity();
+                admin.cashAvailability();
             } else
                 System.out.println("Invalid input, You should choose from admin's options! ");
         }
