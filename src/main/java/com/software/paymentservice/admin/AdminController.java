@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminController {
 
-    public void addDiscount() {
+    public String addDiscount(String choice,String serviceName,int amount) {
         Discount discount;
         DiscountFactory discountFactory = new DiscountFactory();
-        discount = discountFactory.create();
-        discount.addDiscount();
+        discount = discountFactory.create(choice);
+        discount.addDiscount(serviceName,amount);
+        return "Added Successfully..";
     }
 
     public String refundResponse(int id, int op) {
@@ -56,16 +57,10 @@ public class AdminController {
             return s;
     }
 
-    public void cashAvailability() {
-        System.out.println("Enter Service Name to set Cash avaliablity: ");
-        UI.servicesOptions();
-        String serviceName = new Scanner(System.in).next();
-        System.out.println("Enter true or false");
-        boolean visible = new Scanner(System.in).nextBoolean();
+    public String cashAvailability(String serviceName,boolean visible ) {
         SavedData.getObj().services.get(serviceName).setCash(visible);
-
+        return ("cashAvailability done");
     }
-
     public String showPaymentTransaction() {
         String s = "";
         for (Entry<String, Map<Integer, ServiceStatePair>> bigMap : SavedData.getObj().getUsersCompleteService().entrySet()) {

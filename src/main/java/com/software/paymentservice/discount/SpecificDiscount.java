@@ -10,14 +10,7 @@ import com.software.paymentservice.service.Service;
 public class SpecificDiscount implements Discount {
 
     @Override
-    public void addDiscount() {
-
-        UI.servicesOptions();
-        System.out.println("Enter Service Name to Add Discount to it: ");
-        String serviceName = new Scanner(System.in).next();
-
-        System.out.println("Enter Discount Percentage: ");
-        int discount = new Scanner(System.in).nextInt();
+    public void addDiscount(String serviceName,int discount) {
 
         Service discountService = new DiscountDecorator(SavedData.getObj().services.get(serviceName));
         discountService.setDiscount(discount);

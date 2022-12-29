@@ -22,11 +22,9 @@ public class AdminServiceController {
         this.adminController = adminController;
     }
 
-    public void addDiscount() {
-        Discount discount;
-        DiscountFactory discountFactory = new DiscountFactory();
-        discount = discountFactory.create();
-        discount.addDiscount();
+    @RequestMapping(value = "/addDiscount",method = RequestMethod.POST)
+    public String addDiscount(@PathParam("choice") String choice,@PathParam("serviceName") String serviceName,@PathParam("amount") int amount) {
+        return adminController.addDiscount( choice, serviceName, amount);
     }
 
     @RequestMapping(value = "/refundResponse", method = RequestMethod.POST)
@@ -39,15 +37,6 @@ public class AdminServiceController {
         return adminController.showRefund();
     }
 
-//    public void cashAvailability() {
-//        System.out.println("Enter Service Name to set Cash avaliablity: ");
-//        UI.servicesOptions();
-//        String serviceName = new Scanner(System.in).next();
-//        System.out.println("Enter true or false");
-//        boolean visible = new Scanner(System.in).nextBoolean();
-//        SavedData.getObj().services.get(serviceName).setCash(visible);
-//
-//    }
 
     @RequestMapping(value = "/showPaymentTransaction", method = RequestMethod.GET)
     public String showPaymentTransaction() {
@@ -65,5 +54,10 @@ public class AdminServiceController {
         return adminController.showRefundTransaction();
     }
 
+
+    @RequestMapping(value="/cashAvailability",method =RequestMethod.PUT )
+    public String cashAvailability(@PathParam ("serviceName") String serviceName,@PathParam ("visible")boolean visible ){
+        return adminController.cashAvailability(serviceName,visible);
+    }
 
 }
