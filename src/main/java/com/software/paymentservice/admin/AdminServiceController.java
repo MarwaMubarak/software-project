@@ -22,6 +22,7 @@ public class AdminServiceController {
         this.adminController = adminController;
     }
 
+    
     public void addDiscount() {
         Discount discount;
         DiscountFactory discountFactory = new DiscountFactory();
@@ -65,5 +66,10 @@ public class AdminServiceController {
         return adminController.showRefundTransaction();
     }
 
+
+    @RequestMapping(value="/cashAvailability",method =RequestMethod.PUT )
+    public String cashAvailability(@PathParam ("serviceName") String serviceName,@PathParam ("visible")boolean visible ){
+        return adminController.cashAvailability(serviceName,visible);
+    }
 
 }

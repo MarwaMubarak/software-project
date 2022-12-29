@@ -56,16 +56,10 @@ public class AdminController {
             return s;
     }
 
-    public void cashAvailability() {
-        System.out.println("Enter Service Name to set Cash avaliablity: ");
-        UI.servicesOptions();
-        String serviceName = new Scanner(System.in).next();
-        System.out.println("Enter true or false");
-        boolean visible = new Scanner(System.in).nextBoolean();
+    public String cashAvailability(String serviceName,boolean visible ) {
         SavedData.getObj().services.get(serviceName).setCash(visible);
-
+        return ("cashAvailability done");
     }
-
     public String showPaymentTransaction() {
         String s = "";
         for (Entry<String, Map<Integer, ServiceStatePair>> bigMap : SavedData.getObj().getUsersCompleteService().entrySet()) {
