@@ -175,7 +175,7 @@ public class UI {
                 adminController.showRefund();
             } else if (adminChoice == 1) {
                 AdminController adminController = new AdminController();
-                adminController.addDiscount();
+                //adminController.addDiscount();
             } else if (adminChoice == 3) {
                 AdminController adminController = new AdminController();
                // adminController.cashAvailability();

@@ -12,9 +12,8 @@ import  com.software.paymentservice.service.Service;
 public class OverAllDiscount implements Discount {
 
 	@Override
-	public void addDiscount() {
-		System.out.println("Enter Discount Percentage: ");
-		int discount= new Scanner(System.in).nextInt();
+	public void addDiscount(String serviceName,int discount) {
+
 		Iterator<Entry<String, Service>> it = SavedData.getObj().services.entrySet().iterator();
 		while(it.hasNext()) {
 			Entry<String,Service> service = (Entry<String,Service>)it.next();

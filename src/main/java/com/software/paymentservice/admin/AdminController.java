@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminController {
 
-    public void addDiscount() {
+    public String addDiscount(String choice,String serviceName,int amount) {
         Discount discount;
         DiscountFactory discountFactory = new DiscountFactory();
-        discount = discountFactory.create();
-        discount.addDiscount();
+        discount = discountFactory.create(choice);
+        discount.addDiscount(serviceName,amount);
+        return "Added Successfully..";
     }
 
     public String refundResponse(int id, int op) {
