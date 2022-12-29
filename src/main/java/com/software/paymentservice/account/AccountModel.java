@@ -1,4 +1,4 @@
-package com.software.paymentservice.user;
+package com.software.paymentservice.account;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package com.software.paymentservice.payment;
 
 import java.util.Scanner;
 
-import com.software.paymentservice.user.AccountController;
+import com.software.paymentservice.account.AccountController;
 
 
 public class CreditPayment implements Payment {
@@ -19,8 +19,8 @@ public class CreditPayment implements Payment {
             amount = new Scanner(System.in).nextDouble();
         }
         double amountAfterDiscounts = (1 - discount) * amount;
-        if (AccountController.userController.getUserModel().getMyCrditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
-            AccountController.userController.getUserModel().getMyCrditCard().spend(amountAfterDiscounts + getTaxes());
+        if (AccountController.userController.getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
+            AccountController.userController.getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
             return amountAfterDiscounts + getTaxes();
         } else {
             System.out.println("There is Not Enough Money");

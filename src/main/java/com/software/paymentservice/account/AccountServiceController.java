@@ -1,9 +1,6 @@
-package com.software.paymentservice.user;
+package com.software.paymentservice.account;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -14,13 +11,14 @@ public class AccountServiceController {
         this.accountController = accountController;
     }
 
-    @PostMapping(value = "/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(@RequestBody AccountModel accountModel) {
         return accountController.login(accountModel.getUserEmail(),accountModel.getPassword());
     }
 
-    @PostMapping(value = "/signUp")
+    @RequestMapping(value = "/signUp",method = RequestMethod.POST)
     public String signUp(@RequestBody AccountModel accountModel) {
         return accountController.signUp(accountModel.getUserName(), accountModel.getUserEmail(), accountModel.getPassword());
     }
+
 }

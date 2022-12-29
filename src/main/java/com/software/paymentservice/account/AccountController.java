@@ -1,6 +1,7 @@
-package com.software.paymentservice.user;
+package com.software.paymentservice.account;
 
 import com.software.paymentservice.Data.SavedData;
+import com.software.paymentservice.user.UserController;
 import org.springframework.stereotype.Service;
 
 import java.lang.String;
@@ -29,7 +30,7 @@ public class AccountController {
     public String login(String email, String password) {
         if (saveData.getUserData().containsKey(email)) {
             userController = saveData.getUserData().get(email);
-            if (userController.getUserModel().getPasswrod().equals(password))
+            if (userController.getUserModel().getPassword().equals(password))
                 return "Login Successfully";
             else
                 return "Login Failed";

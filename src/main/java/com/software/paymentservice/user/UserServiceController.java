@@ -1,17 +1,7 @@
 package com.software.paymentservice.user;
 
-import com.software.paymentservice.Data.SavedData;
-import com.software.paymentservice.Data.ServiceStatePair;
-import com.software.paymentservice.request.Request;
-import com.software.paymentservice.service.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Vector;
+import com.software.paymentservice.account.AccountController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserServiceController {
@@ -21,26 +11,41 @@ public class UserServiceController {
         this.accountController = accountController;
     }
 
-    @GetMapping(value = "/showCompleteService")
+    @RequestMapping(value = "/showCompleteService", method = RequestMethod.GET)
     public String showCompleteService() {
         return accountController.userController.showCompleteService();
     }
 
-    @PostMapping(value = "/refund")
-    public String refund(@RequestBody Request<Integer> ID) {
-        return accountController.userController.refund(ID.value);
-    }
-    @GetMapping(value = "/showPendingRequest")
+
+    @RequestMapping(value = "/showPendingRequest", method = RequestMethod.GET)
     public String showPendingRequest() {
         return accountController.userController.showPendingRequest();
     }
-    @GetMapping(value = "/showAcceptedService")
+
+    @RequestMapping(value = "/showAcceptedService", method = RequestMethod.GET)
     public String showAcceptedService() {
         return accountController.userController.showAcceptedService();
     }
-    @GetMapping(value = "/showRejectedRequest")
+
+    @RequestMapping(value = "/showRejectedRequest", method = RequestMethod.GET)
     public String showRejectedRequest() {
         return accountController.userController.showRejectedRequest();
+    }
+
+    @RequestMapping(value = "/addToWallet", method = RequestMethod.POST)
+    public String addMoneyToWallet(@RequestParam("amount") int amount) {
+        return accountController.userController.addMoneyToWallet(amount);
+    }
+
+    @RequestMapping(value = "/refund", method = RequestMethod.POST)
+    public String refund(@RequestParam("id") int id) {
+        return accountController.userController.refund(id);
+    }
+
+    @RequestMapping(value = "/showDiscounts", method = RequestMethod.GET)
+    public String showDiscounts() {
+        return accountController.userController.showDiscounts();
+
     }
 
 

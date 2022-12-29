@@ -1,6 +1,6 @@
 package com.software.paymentservice.Screen;
 
-import com.software.paymentservice.user.AccountController;
+import com.software.paymentservice.account.AccountController;
 
 public class Login implements Command {
     AccountController accountController;

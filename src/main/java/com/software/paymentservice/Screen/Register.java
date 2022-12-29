@@ -1,6 +1,6 @@
 package com.software.paymentservice.Screen;
 
-import com.software.paymentservice.user.*;
+import com.software.paymentservice.account.AccountController;
 
 public class Register implements Command {
     AccountController accountController;

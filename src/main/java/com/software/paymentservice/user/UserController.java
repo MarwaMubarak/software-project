@@ -3,6 +3,7 @@ package com.software.paymentservice.user;
 import java.util.*;
 
 import com.software.paymentservice.Data.*;
+import com.software.paymentservice.account.AccountController;
 import com.software.paymentservice.service.*;
 
 
@@ -23,12 +24,6 @@ public class UserController {
         userModel = new UserModel(email, userName, password);
     }
 
-
-    public void addCompeleteServices(Service service) {
-        ServiceStatePair serviceStatePair = new ServiceStatePair(0, service);
-        userModel.getCompleteServices().put(service.id, serviceStatePair);
-        SavedData.getObj().setUsersCompleteService(userModel.getCompleteServices());
-    }
 
     public String showCompleteService() {
         int empty = 0;
@@ -93,34 +88,41 @@ public class UserController {
 
     public String refund(Integer ID) {
         if (!userModel.getCompleteServices().containsKey(ID)) {
-            return "Invalid service !";
+            return "Invalid service id !";
         }
         SavedData.getObj().getRefundService().put(ID, AccountController.userController);
         userModel.getCompleteServices().get(ID).setState(2);
         return "Your request is pending... ";
     }
 
-    public void addMoneyToWallet() {
-        System.out.println("Enter the amount you want to add: ");
-        int amount = new Scanner(System.in).nextInt();
-        if (userModel.getMyCrditCard().getBalance() >= amount) {
-            userModel.getMyCrditCard().spend(amount);
-            userModel.getMyWallet().add(amount);
-            System.out.println("Done Successfully..");
+    public void addCompeleteServices(Service service) {
+        ServiceStatePair serviceStatePair = new ServiceStatePair(0, service);
+        userModel.getCompleteServices().put(service.id, serviceStatePair);
+        SavedData.getObj().setUsersCompleteService(userModel.getCompleteServices());
 
-        } else
-            System.out.println("There is not money..");
     }
 
-    public void showDiscounts() {
+    public String addMoneyToWallet(Integer amount) {
+        if (userModel.getMyCreditCard().getBalance() >= amount) {
+            userModel.getMyCreditCard().spend(amount);
+            userModel.getMyWallet().add(amount);
+            return ("Done Successfully..");
+
+        } else
+            return ("There is not money..");
+    }
+
+    public String showDiscounts() {
         int noDiscounts = 0;
+        String s = "";
         for (Map.Entry<String, Service> service : SavedData.getObj().services.entrySet()) {
-            System.out.println(service.getKey() + ": " + service.getValue().getDiscounts() * 100 + "%");
+            s += (service.getKey() + ": " + service.getValue().getDiscounts() * 100 + "%\n");
             if (service.getValue().getDiscounts() != 0.0)
                 noDiscounts++;
         }
         if (noDiscounts == 0)
-            System.out.println("There is no discounts..");
+            return ("There is no discounts..");
+        return s;
 
     }
 }

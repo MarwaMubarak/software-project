@@ -7,7 +7,7 @@ import com.software.paymentservice.Data.*;
 
 import com.software.paymentservice.admin.Admin;
 import com.software.paymentservice.service.Search;
-import com.software.paymentservice.user.AccountController;
+import com.software.paymentservice.account.AccountController;
 
 public class UI {
     static Scanner cin = new Scanner(System.in);
@@ -149,10 +149,13 @@ public class UI {
 
                 }
 
-            } else if (userChoice == 3) AccountController.userController.showRefunds();
+            }
+            ///ToDo
+            //else if (userChoice == 3) AccountController.userController.showRefunds();
             else if (userChoice == 4) AccountController.userController.showDiscounts();
             else if (userChoice == 5) {
-                AccountController.userController.addMoneyToWallet();
+                ///ToDo
+                AccountController.userController.addMoneyToWallet(10);
             } else if (userChoice == 6) appSteps();
             else
                 System.out.println("Invalid Input, You should choose from user's options!");

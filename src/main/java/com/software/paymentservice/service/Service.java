@@ -5,7 +5,7 @@ import  com.software.paymentservice.payment.*;
 import  com.software.paymentservice.provider.FactoryOfServiceProviderFactory;
 import  com.software.paymentservice.provider.ServiceProvider;
 import  com.software.paymentservice.provider.ServiceProviderFactory;
-import com.software.paymentservice.user.AccountController;
+import com.software.paymentservice.account.AccountController;
 
 public abstract class Service {
 	static public int id;

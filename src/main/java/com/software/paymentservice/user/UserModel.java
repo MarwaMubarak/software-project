@@ -8,19 +8,19 @@ import java.util.Map;
 public class UserModel {
     private String email;
     private String userName;
-    private String passwrod;
-    private CreditCard myCrditCard;
+    private String password;
+    private CreditCard myCreditCard;
     private Wallet myWallet;
     private Map<Integer, ServiceStatePair> completeServices;
 
-    public UserModel(String email, String userName, String passwrod) {
+    public UserModel(String email, String userName, String password) {
         this.email = email;
         this.userName = userName;
-        this.passwrod = passwrod;
+        this.password = password;
         completeServices = new HashMap<Integer, ServiceStatePair>();
         myWallet = new Wallet();
-        myCrditCard = new CreditCard();
-        myCrditCard.add(1000);
+        myCreditCard = new CreditCard();
+        myCreditCard.add(1000);
     }
 
 
@@ -40,12 +40,12 @@ public class UserModel {
         return userName;
     }
 
-    public String getPasswrod() {
-        return passwrod;
+    public String getPassword() {
+        return password;
     }
 
-    public CreditCard getMyCrditCard() {
-        return myCrditCard;
+    public CreditCard getMyCreditCard() {
+        return myCreditCard;
     }
 
     public Wallet getMyWallet() {
@@ -60,12 +60,12 @@ public class UserModel {
         this.userName = userName;
     }
 
-    public void setPasswrod(String passwrod) {
-        this.passwrod = passwrod;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setMyCrditCard(CreditCard myCrditCard) {
-        this.myCrditCard = myCrditCard;
+    public void setMyCreditCard(CreditCard myCreditCard) {
+        this.myCreditCard = myCreditCard;
     }
 
     public void setMyWallet(Wallet myWallet) {
