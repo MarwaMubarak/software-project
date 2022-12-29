@@ -121,7 +121,7 @@ public class UI {
                     if (list.size() == 0) {
                         System.out.println("This service is not available!");
                     } else {
-                        SavedData.getObj().services.get(list.get(0).name).serve();
+//                        SavedData.getObj().services.get(list.get(0).name).serve();
                         break;
                     }
                 }
@@ -136,13 +136,13 @@ public class UI {
                     } else if (list.size() == 1) {
                         System.out.println("Your service is: " + list.get(0).name);
                         System.out.println("----------------------------------------------------------");
-                        SavedData.getObj().services.get(list.get(0).name).serve();
+//                        SavedData.getObj().services.get(list.get(0).name).serve();
                         break;
                     } else {
                         System.out.println("Enter The Name of The Service: ");
                         Search.showSearchResult(list);
                         serviceName = new Scanner(System.in).next();
-                        SavedData.getObj().services.get(serviceName).serve();
+//                        SavedData.getObj().services.get(serviceName).serve();
                         break;
                     }
                     System.out.println("----------------------------------------------------------");

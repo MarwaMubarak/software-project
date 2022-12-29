@@ -6,18 +6,10 @@ import com.software.paymentservice.account.AccountController;
 
 
 public class CreditPayment implements Payment {
-    public double amount = 0.0;
 
     @Override
-    public double pay(double discount) {
+    public double pay(double discount, double amount) {
 
-        System.out.println("Enter The Amount: ");
-        amount = new Scanner(System.in).nextDouble();
-        while (amount < 0.0) {
-            System.out.println("Invalid Input!!");
-            System.out.println("Enter The Amount Again: ");
-            amount = new Scanner(System.in).nextDouble();
-        }
         double amountAfterDiscounts = (1 - discount) * amount;
         if (AccountController.userController.getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
             AccountController.userController.getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
@@ -41,9 +33,5 @@ public class CreditPayment implements Payment {
         return 5;
     }
 
-    @Override
-    public double getAmount() {
-        return amount;
-    }
 
 }
