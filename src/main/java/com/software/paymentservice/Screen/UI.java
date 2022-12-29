@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import com.software.paymentservice.Data.*;
 
-import com.software.paymentservice.admin.Admin;
+import com.software.paymentservice.admin.AdminController;
 import com.software.paymentservice.service.Search;
 import com.software.paymentservice.account.AccountController;
 
@@ -171,14 +171,14 @@ public class UI {
             int adminChoice = cin.nextInt();
             if (adminChoice == 4) appSteps();
             else if (adminChoice == 2) {
-                Admin admin = new Admin();
-                admin.showRefund();
+                AdminController adminController = new AdminController();
+                adminController.showRefund();
             } else if (adminChoice == 1) {
-                Admin admin = new Admin();
-                admin.addDiscount();
+                AdminController adminController = new AdminController();
+                adminController.addDiscount();
             } else if (adminChoice == 3) {
-                Admin admin = new Admin();
-                admin.cashAvailability();
+                AdminController adminController = new AdminController();
+                adminController.cashAvailability();
             } else
                 System.out.println("Invalid input, You should choose from admin's options! ");
         }
