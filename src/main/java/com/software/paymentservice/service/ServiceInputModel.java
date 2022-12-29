@@ -6,6 +6,10 @@ abstract public class ServiceInputModel {
     double amount;
 
     String info;
+    public ServiceInputModel()
+    {
+
+    }
 
 
     public String getInfo() {
@@ -20,9 +24,9 @@ abstract public class ServiceInputModel {
         this.paymentWayID = paymentWayID;
         this.serviceProviderID = serviceProviderID;
         this.amount = amount;
-//        if (info == null)
-//            this.info = "122";
-//        else
+        if (info == null)
+            this.info = " ";
+        else
             this.info = info;
     }
 

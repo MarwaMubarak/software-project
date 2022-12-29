@@ -6,6 +6,7 @@ import com.software.paymentservice.provider.FactoryOfServiceProviderFactory;
 import com.software.paymentservice.provider.ServiceProvider;
 import com.software.paymentservice.provider.ServiceProviderFactory;
 import com.software.paymentservice.account.AccountController;
+import org.springframework.stereotype.Component;
 
 public abstract class Service {
     static public int id;
