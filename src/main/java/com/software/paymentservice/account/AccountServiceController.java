@@ -11,7 +11,7 @@ public class AccountServiceController {
         this.accountController = accountController;
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(@RequestBody AccountModel accountModel) {
         return accountController.login(accountModel.getUserEmail(),accountModel.getPassword());
     }
