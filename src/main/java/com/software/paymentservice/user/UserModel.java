@@ -12,9 +12,11 @@ public class UserModel {
     private CreditCard myCreditCard;
     private Wallet myWallet;
     private Map<Integer, ServiceStatePair> completeServices;
+
     public UserModel() {
 
     }
+
     public UserModel(String email, String userName, String password) {
         this.email = email;
         this.userName = userName;

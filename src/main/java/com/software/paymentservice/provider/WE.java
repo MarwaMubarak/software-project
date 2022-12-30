@@ -3,7 +3,7 @@ package com.software.paymentservice.provider;
 import com.software.paymentservice.response.Response;
 
 public class WE extends ServiceProvider {
-    String phoneNumber;
+    private String phoneNumber;
 
     @Override
     public String getName() {
@@ -13,8 +13,8 @@ public class WE extends ServiceProvider {
     @Override
     public Response setInfo(double amount, String info) {
         phoneNumber = info;
-        money += amount;
-        return new Response("Done successfully..","");
+        setMoney(getMoney()+amount);
+        return new Response("Done successfully..", "");
 
     }
 

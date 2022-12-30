@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 @RestController
 public class SearchController {
     private Search search;
@@ -18,8 +19,8 @@ public class SearchController {
         this.search = search;
     }
 
-    @RequestMapping(value = "/search",method = RequestMethod.GET)
-     public Response search(@PathParam("id") String id) {
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public Response search(@PathParam("id") String id) {
         return this.search.search(id);
     }
 }

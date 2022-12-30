@@ -17,15 +17,16 @@ import java.util.Scanner;
 
 @RestController
 public class AdminServiceController {
-    AdminController adminController;
+
+    private AdminController adminController;
 
     public AdminServiceController(AdminController adminController) {
         this.adminController = adminController;
     }
 
-    @RequestMapping(value = "/addDiscount",method = RequestMethod.POST)
+    @RequestMapping(value = "/addDiscount", method = RequestMethod.POST)
     public Response addDiscount(@PathParam("choice") String choice, @PathParam("serviceName") String serviceName, @PathParam("amount") int amount) {
-        return adminController.addDiscount( choice, serviceName, amount);
+        return adminController.addDiscount(choice, serviceName, amount);
     }
 
     @RequestMapping(value = "/refundResponse", method = RequestMethod.POST)
@@ -37,7 +38,6 @@ public class AdminServiceController {
     public Response showRefund() {
         return adminController.showRefund();
     }
-
 
     @RequestMapping(value = "/showPaymentTransaction", method = RequestMethod.GET)
     public Response showPaymentTransaction() {
@@ -55,10 +55,9 @@ public class AdminServiceController {
         return adminController.showRefundTransaction();
     }
 
-
-    @RequestMapping(value="/cashAvailability",method =RequestMethod.PUT )
-    public Response cashAvailability(@PathParam ("serviceName") String serviceName,@PathParam ("visible")boolean visible ){
-        return adminController.cashAvailability(serviceName,visible);
+    @RequestMapping(value = "/cashAvailability", method = RequestMethod.PUT)
+    public Response cashAvailability(@PathParam("serviceName") String serviceName, @PathParam("visible") boolean visible) {
+        return adminController.cashAvailability(serviceName, visible);
     }
 
 }

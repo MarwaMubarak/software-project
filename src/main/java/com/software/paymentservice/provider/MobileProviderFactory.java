@@ -6,7 +6,6 @@ public class MobileProviderFactory implements ServiceProviderFactory {
     @Override
     public ServiceProvider create(int ID) {
 
-
         if (ID == 1) {
             return new Etisalat();
         } else if (ID == 2) {

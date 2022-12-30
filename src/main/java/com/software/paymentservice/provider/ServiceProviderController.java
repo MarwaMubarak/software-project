@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServiceProviderController {
 
-
-    @RequestMapping(value = "/setInfo",method = RequestMethod.GET)
-    public Response setInfo(@PathParam("amount") double amount,@PathParam("info")  String info,@PathParam("providerId")  int providerId) {
-       return SavedData.getObj().getServiceProvider().setInfo(amount,info);
+    @RequestMapping(value = "/setInfo", method = RequestMethod.GET)
+    public Response setInfo(@PathParam("amount") double amount, @PathParam("info") String info, @PathParam("providerId") int providerId) {
+        return SavedData.getObj().getServiceProvider().setInfo(amount, info);
     }
 }

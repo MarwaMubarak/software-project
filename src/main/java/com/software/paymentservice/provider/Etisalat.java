@@ -11,7 +11,7 @@ public class Etisalat extends ServiceProvider{
 	@Override
 	public Response setInfo(double amount, String info) {
 		phoneNumber = info;
-		money+=amount;
+		setMoney(getMoney()+amount);
 		return new Response("Done successfully..","");
 	}
 	

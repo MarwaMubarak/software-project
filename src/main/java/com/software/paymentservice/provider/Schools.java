@@ -11,7 +11,7 @@ public class Schools extends ServiceProvider {
 
     @Override
     public Response setInfo(double amount, String info) {
-        money += amount;
-        return new Response("Done successfully..","");
+        setMoney(getMoney() + amount);
+        return new Response("Done successfully..", "");
     }
 }

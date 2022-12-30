@@ -15,19 +15,15 @@ public class CreditPayment implements Payment {
         double amountAfterDiscounts = (1 - discount) * amount;
         if (AccountController.getUserController().getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
             AccountController.getUserController().getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
-            return new Response("Done Successfully...",amountAfterDiscounts + getTaxes());
+            return new Response("Done Successfully...", amountAfterDiscounts + getTaxes());
         } else {
-            //System.out.println("There is Not Enough Money");
-            return new Response("There is Not Enough Money",-1);
+            return new Response("There is Not Enough Money", -1);
         }
-
-
     }
 
     @Override
     public String getName() {
         return "CreditCardPayment";
-
     }
 
     @Override

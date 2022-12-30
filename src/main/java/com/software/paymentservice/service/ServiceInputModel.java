@@ -1,40 +1,43 @@
 package com.software.paymentservice.service;
 
- public class ServiceInputModel {
+public class ServiceInputModel {
     int paymentWayID;
     int serviceProviderID;
     double amount;
     String serviceName;
     String info;
-    public ServiceInputModel() {}
-    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String info,String serviceName) {
+
+    public ServiceInputModel() {
+    }
+
+    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String info, String serviceName) {
         this.paymentWayID = paymentWayID;
         this.serviceProviderID = serviceProviderID;
         this.amount = amount;
-        this.serviceName=serviceName;
+        this.serviceName = serviceName;
         if (info == null)
             this.info = "";
         else
             this.info = info;
     }
 
-    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount,String serviceName) {
+    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String serviceName) {
         this.paymentWayID = paymentWayID;
         this.serviceProviderID = serviceProviderID;
         this.amount = amount;
-        this.serviceName=serviceName;
+        this.serviceName = serviceName;
         this.info = "";
     }
 
-     public String getServiceName() {
-         return serviceName;
-     }
+    public String getServiceName() {
+        return serviceName;
+    }
 
-     public void setServiceName(String serviceName) {
-         this.serviceName = serviceName;
-     }
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
-     public String getInfo() {
+    public String getInfo() {
         return info;
     }
 

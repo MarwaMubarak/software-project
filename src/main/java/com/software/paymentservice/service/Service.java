@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 
 public abstract class Service {
-    static public int id;
-    public double cost;
+    public static int id;
+    double cost;
     Payment payment = new CreditPayment();
     Double discount = 0.0;
     ServiceProvider provider;
@@ -86,8 +86,9 @@ public abstract class Service {
         Response response = restTemplate.getForObject(url, Response.class);
         return response;
     }
-    public Response infoRequest(double amount, String info,int providerId){
-        String url=SavedData.getObj().getBaseUrl()+"/setInfo?amount="+amount+"&info="+info+"&providerId="+providerId;
+
+    public Response infoRequest(double amount, String info, int providerId) {
+        String url = SavedData.getObj().getBaseUrl() + "/setInfo?amount=" + amount + "&info=" + info + "&providerId=" + providerId;
         RestTemplate restTemplate = new RestTemplate();
         Response response = restTemplate.getForObject(url, Response.class);
         return response;
@@ -106,7 +107,7 @@ public abstract class Service {
         if (cost != -1) {
             setId(id + 1);
             AccountController.getUserController().addCompeleteServices(this);
-            infoRequest(serviceInputModel.amount, serviceInputModel.getInfo(),serviceInputModel.getServiceProviderID());
+            infoRequest(serviceInputModel.amount, serviceInputModel.getInfo(), serviceInputModel.getServiceProviderID());
             return new Response("Done..", getInfo());
         } else
             setCost(0);
