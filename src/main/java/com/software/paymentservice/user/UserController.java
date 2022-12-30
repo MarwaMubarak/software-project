@@ -90,7 +90,7 @@ public class UserController {
         SavedData.getObj().getRefundService().put(ID, AccountController.getUserController());
         userModel.getCompleteServices().get(ID).setState(2);
         if (SavedData.getObj().getRefundTransactions().containsKey(userModel.getEmail()))
-            SavedData.getObj().getRefundTransactions().get(userModel.getEmail()).add("service ID: " + ID + " service name" + userModel.getCompleteServices().get(ID).service.getName());
+            SavedData.getObj().getRefundTransactions().get(userModel.getEmail()).add("service ID: " + ID + " service name: " + userModel.getCompleteServices().get(ID).service.getName());
         else {
             ArrayList<String> arr = new ArrayList<>();
             arr.add("service ID: " + ID + " service name: " + userModel.getCompleteServices().get(ID).service.getName());
