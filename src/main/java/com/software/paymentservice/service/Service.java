@@ -105,7 +105,7 @@ public abstract class Service {
         setCost(finalCost);
         if (cost != -1) {
             setId(id + 1);
-            AccountController.userController.addCompeleteServices(this);
+            AccountController.getUserController().addCompeleteServices(this);
             infoRequest(serviceInputModel.amount, serviceInputModel.getInfo(),serviceInputModel.getServiceProviderID());
             return new Response("Done..", getInfo());
         } else

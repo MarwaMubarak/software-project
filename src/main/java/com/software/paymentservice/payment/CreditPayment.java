@@ -13,8 +13,8 @@ public class CreditPayment implements Payment {
     public Response pay(double discount, double amount) {
 
         double amountAfterDiscounts = (1 - discount) * amount;
-        if (AccountController.userController.getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
-            AccountController.userController.getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
+        if (AccountController.getUserController().getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
+            AccountController.getUserController().getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
             return new Response("Done Successfully...",amountAfterDiscounts + getTaxes());
         } else {
             //System.out.println("There is Not Enough Money");

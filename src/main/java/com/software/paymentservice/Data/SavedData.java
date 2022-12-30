@@ -15,12 +15,39 @@ import com.software.paymentservice.service.*;
 public class SavedData {
 
     private static SavedData savedData = null;
-    public String baseUrl="http://localhost:8080";
+    private String baseUrl = "http://localhost:8080";
+    private Map<String, Map<Integer, ServiceStatePair>> usersCompleteService;
+    private Map<String, Service> services;
+    private Payment payment;
+    private ServiceProvider serviceProvider;
+    private Map<Integer, UserController> refundServices;
+    private Map<String, ArrayList<String>> refundTransactions;
+    private Map<String, UserController> userData;
+    private Map<String, ArrayList<String>> walletTransactions;
 
-    public Map<String, Map<Integer, ServiceStatePair>> usersCompleteService;
-    public Map<String, Service> services;
-    public Payment payment;
-    public ServiceProvider serviceProvider;
+    private SavedData() {
+        usersCompleteService = new HashMap<String, Map<Integer, ServiceStatePair>>();
+        services = new HashMap<String, Service>();
+        refundServices = new HashMap<Integer, UserController>();
+        userData = new HashMap<String, UserController>();
+        walletTransactions = new HashMap<>();
+        refundTransactions = new HashMap<>();
+        services.put("MobileRecharge", new MobileRechargeService());
+        services.put("InternetPayment", new InternetPaymentService());
+        services.put("Landline", new LandlineService());
+        services.put("Donation", new DonationService());
+    }
+
+    public static SavedData getObj() {
+        if (savedData == null) savedData = new SavedData();
+
+        return savedData;
+    }
+
+
+    public Map<Integer, UserController> getRefundServices() {
+        return refundServices;
+    }
 
     public ServiceProvider getServiceProvider() {
         return serviceProvider;
@@ -30,46 +57,16 @@ public class SavedData {
         this.serviceProvider = serviceProvider;
     }
 
-    private Map<Integer, UserController> refundServices;
+    public Map<String, ArrayList<String>> getWalletTransactions() {
+        return walletTransactions;
+    }
 
     public Map<String, ArrayList<String>> getRefundTransactions() {
         return refundTransactions;
     }
 
-    private Map<String, ArrayList<String>> refundTransactions;
-
-    private Map<String, UserController> userData;
-
-    public Map<String, ArrayList<String>> getWalletTransactions() {
-        return walletTransactions;
-    }
-
-    private Map<String, ArrayList<String>> walletTransactions;
-
-
-
     public Map<Integer, UserController> getRefundService() {
         return refundServices;
-    }
-
-    private SavedData() {
-        usersCompleteService = new HashMap<String, Map<Integer, ServiceStatePair>>();
-        services = new HashMap<String, Service>();
-        refundServices = new HashMap<Integer, UserController>();
-        userData = new HashMap<String, UserController>();
-        walletTransactions = new HashMap<>();
-        refundTransactions=new HashMap<>();
-        services.put("MobileRecharge", new MobileRechargeService());
-        services.put("InternetPayment", new InternetPaymentService());
-        services.put("Landline", new LandlineService());
-        services.put("Donation", new DonationService());
-    }
-
-
-    public static SavedData getObj() {
-        if (savedData == null) savedData = new SavedData();
-
-        return savedData;
     }
 
     public Map<String, Service> getServices() {
@@ -89,7 +86,7 @@ public class SavedData {
     }
 
     public Map<Integer, ServiceStatePair> getUserCompleteService() {
-        return usersCompleteService.get(AccountController.userController.getUserModel().getEmail());
+        return usersCompleteService.get(AccountController.getUserController().getUserModel().getEmail());
     }
 
     public Map<String, Map<Integer, ServiceStatePair>> getUsersCompleteService() {
@@ -97,8 +94,9 @@ public class SavedData {
     }
 
     public void setUsersCompleteService(Map<Integer, ServiceStatePair> userCompliete) {
-        usersCompleteService.put(AccountController.userController.getUserModel().getEmail(), userCompliete);
+        usersCompleteService.put(AccountController.getUserController().getUserModel().getEmail(), userCompliete);
     }
+
     public String getBaseUrl() {
         return baseUrl;
     }

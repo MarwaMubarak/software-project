@@ -11,9 +11,17 @@ import java.lang.String;
 @Service
 public class AccountController {
 
+    private static UserController userController;
     private AccountModel accountModel;
-    SavedData saveData;
-    public static UserController userController;
+    private SavedData saveData;
+
+    public static UserController getUserController() {
+        return userController;
+    }
+
+    public static void setUserController(UserController userController) {
+        AccountController.userController = userController;
+    }
 
     public AccountModel getAccountModel() {
         return accountModel;
@@ -28,13 +36,11 @@ public class AccountController {
         accountModel = new AccountModel(userEmail, userName, password);
     }
 
-
     public Response login(String email, String password) {
-        if (saveData.getUserData().containsKey(email)&&saveData.getUserData().get(email).getUserModel().getPassword().equals(password)) {
+        if (saveData.getUserData().containsKey(email) && saveData.getUserData().get(email).getUserModel().getPassword().equals(password)) {
             userController = saveData.getUserData().get(email);
-            return new Response("login successfully",userController.getUserModel());
-        }
-        else return new Response("failed to login",new UserModel());
+            return new Response("login successfully", userController.getUserModel());
+        } else return new Response("failed to login", new UserModel());
     }
 
     public Response signUp(String userName, String email, String password) {
@@ -42,7 +48,7 @@ public class AccountController {
             UserController userController = new UserController(email, userName, password);
             saveData.getUserData().put(email, userController);
             saveData.getUserData().put(userName, userController);
-            return  new Response("Sign up Successfully","");
-        } else return new Response("Sign up Failed","");
+            return new Response("Sign up Successfully", "");
+        } else return new Response("Sign up Failed", "");
     }
 }

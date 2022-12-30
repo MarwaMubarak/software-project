@@ -89,7 +89,7 @@ public class UserController {
         if (!userModel.getCompleteServices().containsKey(ID)) {
             return new Response( "Invalid service id !","");
         }
-        SavedData.getObj().getRefundService().put(ID, AccountController.userController);
+        SavedData.getObj().getRefundService().put(ID, AccountController.getUserController());
         userModel.getCompleteServices().get(ID).setState(2);
         if( SavedData.getObj().getRefundTransactions().containsKey(userModel.getEmail()))
             SavedData.getObj().getRefundTransactions().get(userModel.getEmail()).add("service ID: "+ID+" service name"+userModel.getCompleteServices().get(ID).service.getName());
@@ -131,7 +131,7 @@ public class UserController {
     public Response showDiscounts() {
         int noDiscounts = 0;
         ArrayList<String>s=new ArrayList<>();
-        for (Map.Entry<String, Service> service : SavedData.getObj().services.entrySet()) {
+        for (Map.Entry<String, Service> service : SavedData.getObj().getServices().entrySet()) {
             s.add (service.getKey() + ": " + service.getValue().getDiscounts() * 100 + "%");
             if (service.getValue().getDiscounts() != 0.0)
                 noDiscounts++;

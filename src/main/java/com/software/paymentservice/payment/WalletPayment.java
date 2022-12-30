@@ -11,8 +11,8 @@ public class WalletPayment implements Payment{
 	@Override
 	public Response pay(double discount, double amount) {
 		double amountAfterDiscounts = (1-discount)*amount;
-		if(AccountController.userController.getUserModel().getMyWallet().getBalance()>=amountAfterDiscounts+getTaxes()) {
-			AccountController.userController.getUserModel().getMyWallet().spend(amountAfterDiscounts+getTaxes());
+		if(AccountController.getUserController().getUserModel().getMyWallet().getBalance()>=amountAfterDiscounts+getTaxes()) {
+			AccountController.getUserController().getUserModel().getMyWallet().spend(amountAfterDiscounts+getTaxes());
 			return new Response ("Done successfully..",amountAfterDiscounts+getTaxes());
 		}
 		else {

@@ -11,9 +11,9 @@ public class SpecificDiscount implements Discount {
     @Override
     public void addDiscount(String serviceName,int discount) {
 
-        Service discountService = new DiscountDecorator(SavedData.getObj().services.get(serviceName));
+        Service discountService = new DiscountDecorator(SavedData.getObj().getServices().get(serviceName));
         discountService.setDiscount(discount);
-        SavedData.getObj().services.put(serviceName, discountService);
+        SavedData.getObj().getServices().put(serviceName, discountService);
 
     }
 

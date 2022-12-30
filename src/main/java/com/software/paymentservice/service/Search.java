@@ -16,7 +16,7 @@ public class Search {
 	 public Response search(String id) {
 		ArrayList<String> searchResult = new ArrayList<String>();
 		
-		for(Map.Entry<String, Service> service : SavedData.getObj().services.entrySet()) {
+		for(Map.Entry<String, Service> service : SavedData.getObj().getServices().entrySet()) {
 			String s=service.getKey().toLowerCase(Locale.ROOT);
 			id=id.toLowerCase(Locale.ROOT);
 			if(s.contains(id)) {
@@ -31,7 +31,7 @@ public class Search {
 	
 	 public void showSearchResult(ArrayList<NameServicePair>searchResult) {
 		for(int i =0 ;i<searchResult.size();i++) {
-			System.out.println(searchResult.get(i).name);
+			System.out.println(searchResult.get(i).getName());
 		}		
 	}
 	 

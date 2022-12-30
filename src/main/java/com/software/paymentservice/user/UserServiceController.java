@@ -14,38 +14,38 @@ public class UserServiceController {
 
     @RequestMapping(value = "/showCompleteService", method = RequestMethod.GET)
     public Response showCompleteService() {
-        return accountController.userController.showCompleteService();
+        return accountController.getUserController().showCompleteService();
     }
 
 
     @RequestMapping(value = "/showPendingRequest", method = RequestMethod.GET)
     public Response showPendingRequest() {
-        return accountController.userController.showPendingRequest();
+        return accountController.getUserController().showPendingRequest();
     }
 
     @RequestMapping(value = "/showAcceptedService", method = RequestMethod.GET)
     public Response showAcceptedService() {
-        return accountController.userController.showAcceptedService();
+        return accountController.getUserController().showAcceptedService();
     }
 
     @RequestMapping(value = "/showRejectedRequest", method = RequestMethod.GET)
     public Response showRejectedRequest() {
-        return accountController.userController.showRejectedRequest();
+        return accountController.getUserController().showRejectedRequest();
     }
 
     @RequestMapping(value = "/addToWallet", method = RequestMethod.POST)
     public Response addMoneyToWallet(@RequestParam("amount") int amount) {
-        return accountController.userController.addMoneyToWallet(amount);
+        return accountController.getUserController().addMoneyToWallet(amount);
     }
 
     @RequestMapping(value = "/refund", method = RequestMethod.POST)
     public Response refund(@RequestParam("id") int id) {
-        return accountController.userController.refund(id);
+        return accountController.getUserController().refund(id);
     }
 
     @RequestMapping(value = "/showDiscounts", method = RequestMethod.GET)
     public Response showDiscounts() {
-        return accountController.userController.showDiscounts();
+        return accountController.getUserController().showDiscounts();
 
     }
 
