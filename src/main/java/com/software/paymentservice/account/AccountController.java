@@ -1,7 +1,9 @@
 package com.software.paymentservice.account;
 
 import com.software.paymentservice.Data.SavedData;
+import com.software.paymentservice.response.Response;
 import com.software.paymentservice.user.UserController;
+import com.software.paymentservice.user.UserModel;
 import org.springframework.stereotype.Service;
 
 import java.lang.String;
@@ -27,22 +29,20 @@ public class AccountController {
     }
 
 
-    public String login(String email, String password) {
-        if (saveData.getUserData().containsKey(email)) {
+    public Response login(String email, String password) {
+        if (saveData.getUserData().containsKey(email)&&saveData.getUserData().get(email).getUserModel().getPassword().equals(password)) {
             userController = saveData.getUserData().get(email);
-            if (userController.getUserModel().getPassword().equals(password))
-                return "Login Successfully";
-            else
-                return "Login Failed";
-        } else return "Login Failed";
+            return new Response("login successfully",userController.getUserModel());
+        }
+        else return new Response("failed to login",new UserModel());
     }
 
-    public String signUp(String userName, String email, String password) {
+    public Response signUp(String userName, String email, String password) {
         if (!saveData.getUserData().containsKey(email) && !saveData.getUserData().containsKey(userName)) {
             UserController userController = new UserController(email, userName, password);
             saveData.getUserData().put(email, userController);
             saveData.getUserData().put(userName, userController);
-            return "Sign up Successfully";
-        } else return "Sign up Failed";
+            return  new Response("Sign up Successfully","");
+        } else return new Response("Sign up Failed","");
     }
 }

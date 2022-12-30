@@ -15,13 +15,19 @@ public class SavedData {
 
     private Map<Integer, UserController> refundServices;
 
+    public Map<String, ArrayList<String>> getRefundTransactions() {
+        return refundTransactions;
+    }
+
+    private Map<String, ArrayList<String>> refundTransactions;
+
     private Map<String, UserController> userData;
 
-    public Map<String, String> getWalletTransactions() {
+    public Map<String, ArrayList<String>> getWalletTransactions() {
         return walletTransactions;
     }
 
-    private Map<String, String> walletTransactions;
+    private Map<String, ArrayList<String>> walletTransactions;
 
     private static SavedData savedData = null;
 
@@ -36,6 +42,7 @@ public class SavedData {
         refundServices = new HashMap<Integer, UserController>();
         userData = new HashMap<String, UserController>();
         walletTransactions = new HashMap<>();
+        refundTransactions=new HashMap<>();
         services.put("MobileRecharge", new MobileRechargeService());
         services.put("InternetPayment", new InternetPaymentService());
         services.put("Landline", new LandlineService());

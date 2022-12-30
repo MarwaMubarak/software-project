@@ -3,7 +3,7 @@ package com.software.paymentservice.user;
 public class CreditCard {
 
 	double balance=0.0;
-	String cardNumber;
+	String cardNumber="12345789";
 	public double getBalance()
 	{
 		return balance;

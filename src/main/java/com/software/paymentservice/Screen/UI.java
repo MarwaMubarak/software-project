@@ -117,37 +117,37 @@ public class UI {
                     String serviceName = new Scanner(System.in).next();
                     System.out.println("----------------------------------------------------------");
 
-                    ArrayList<NameServicePair> list = Search.search(serviceName);
-                    if (list.size() == 0) {
-                        System.out.println("This service is not available!");
-                    } else {
-//                        SavedData.getObj().services.get(list.get(0).name).serve();
-                        break;
-                    }
+//                    ArrayList<NameServicePair> list = Search.search(serviceName);
+//                    if (list.size() == 0) {
+//                        System.out.println("This service is not available!");
+//                    } else {
+////                        SavedData.getObj().services.get(list.get(0).name).serve();
+//                        break;
+//                    }
                 }
 
             } else if (userChoice == 2) {
-                while (true) {
-                    System.out.println("search about the service [Enter the name of service]");
-                    String serviceName = new Scanner(System.in).next();
-                    ArrayList<NameServicePair> list = Search.search(serviceName);
-                    if (list.size() == 0) {
-                        System.out.println("This service not available!");
-                    } else if (list.size() == 1) {
-                        System.out.println("Your service is: " + list.get(0).name);
-                        System.out.println("----------------------------------------------------------");
-//                        SavedData.getObj().services.get(list.get(0).name).serve();
-                        break;
-                    } else {
-                        System.out.println("Enter The Name of The Service: ");
-                        Search.showSearchResult(list);
-                        serviceName = new Scanner(System.in).next();
-//                        SavedData.getObj().services.get(serviceName).serve();
-                        break;
-                    }
-                    System.out.println("----------------------------------------------------------");
-
-                }
+//                while (true) {
+//                    System.out.println("search about the service [Enter the name of service]");
+//                    String serviceName = new Scanner(System.in).next();
+//                    ArrayList<NameServicePair> list = Search.search(serviceName);
+//                    if (list.size() == 0) {
+//                        System.out.println("This service not available!");
+//                    } else if (list.size() == 1) {
+//                        System.out.println("Your service is: " + list.get(0).name);
+//                        System.out.println("----------------------------------------------------------");
+////                        SavedData.getObj().services.get(list.get(0).name).serve();
+//                        break;
+//                    } else {
+//                        System.out.println("Enter The Name of The Service: ");
+//                        Search.showSearchResult(list);
+//                        serviceName = new Scanner(System.in).next();
+////                        SavedData.getObj().services.get(serviceName).serve();
+//                        break;
+//                    }
+//                    System.out.println("----------------------------------------------------------");
+//
+//                }
 
             }
             ///ToDo

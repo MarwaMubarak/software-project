@@ -2,10 +2,9 @@
 package com.software.paymentservice.service;
 
 import com.software.paymentservice.payment.*;
-import com.software.paymentservice.provider.FactoryOfServiceProviderFactory;
-import com.software.paymentservice.provider.ServiceProvider;
-import com.software.paymentservice.provider.ServiceProviderFactory;
+import com.software.paymentservice.provider.*;
 import com.software.paymentservice.account.AccountController;
+import com.software.paymentservice.response.Response;
 import org.springframework.stereotype.Component;
 
 public abstract class Service {
@@ -18,7 +17,7 @@ public abstract class Service {
 
 
     public Service() {
-        id = 1;
+        id = 0;
         cost = 0;
     }
 
@@ -75,19 +74,21 @@ public abstract class Service {
         return cost;
     }
 
-    public String serve(ServiceInputModel serviceInputModel) {
+    public Response serve(ServiceInputModel serviceInputModel) {
+        if(serviceInputModel.paymentWayID==3&& !getCash())
+            return new Response("There is no cash","");
         setPayment(serviceInputModel.getPaymentWayID());
         setProvider(serviceInputModel.getServiceProviderID());
         discount = getDiscounts();
         setCost(payment.pay(discount, serviceInputModel.amount));
         if (cost != -1) {
+            setId(id + 1);
             AccountController.userController.addCompeleteServices(this);
             provider.setInfo(serviceInputModel.amount, serviceInputModel.getInfo());
-            setId(id + 1);
-            return getInfo();
+            return new Response("Done..",getInfo());
         } else
             setCost(0);
-        return "Service not Complete";
+        return new Response("Service not Complete","");
     }
 
     abstract public String getName();

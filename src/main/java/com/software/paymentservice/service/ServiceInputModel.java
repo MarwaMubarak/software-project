@@ -1,18 +1,44 @@
 package com.software.paymentservice.service;
 
-abstract public class ServiceInputModel {
+ public class ServiceInputModel {
     int paymentWayID;
     int serviceProviderID;
     double amount;
-
+    String serviceName;
     String info;
     public ServiceInputModel()
     {
 
     }
+    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String info,String serviceName) {
+        this.paymentWayID = paymentWayID;
+        this.serviceProviderID = serviceProviderID;
+        this.amount = amount;
+        this.serviceName=serviceName;
+        if (info == null)
+            this.info = " ";
+        else
+            this.info = info;
+    }
 
+    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount,String serviceName) {
+        this.paymentWayID = paymentWayID;
+        this.serviceProviderID = serviceProviderID;
+        this.amount = amount;
+        this.serviceName=serviceName;
 
-    public String getInfo() {
+        this.info = "";
+    }
+
+     public String getServiceName() {
+         return serviceName;
+     }
+
+     public void setServiceName(String serviceName) {
+         this.serviceName = serviceName;
+     }
+
+     public String getInfo() {
         return info;
     }
 
@@ -20,22 +46,6 @@ abstract public class ServiceInputModel {
         this.info = info;
     }
 
-    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String info) {
-        this.paymentWayID = paymentWayID;
-        this.serviceProviderID = serviceProviderID;
-        this.amount = amount;
-        if (info == null)
-            this.info = " ";
-        else
-            this.info = info;
-    }
-
-    public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount) {
-        this.paymentWayID = paymentWayID;
-        this.serviceProviderID = serviceProviderID;
-        this.amount = amount;
-        this.info = "";
-    }
 
     public int getPaymentWayID() {
         return paymentWayID;

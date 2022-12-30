@@ -10,7 +10,8 @@ public class Login implements Command {
     }
 
     public String excute() {
-        return (accountController.login(accountController.getAccountModel().getUserName(), accountController.getAccountModel().getPassword()));
+        return " ";
+                //(accountController.login(accountController.getAccountModel().getUserName(), accountController.getAccountModel().getPassword()));
     }
 
 }

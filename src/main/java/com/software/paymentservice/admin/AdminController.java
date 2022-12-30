@@ -1,5 +1,6 @@
 package com.software.paymentservice.admin;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -10,93 +11,101 @@ import com.software.paymentservice.Data.ServiceStatePair;
 import com.software.paymentservice.Screen.UI;
 import com.software.paymentservice.discount.Discount;
 import com.software.paymentservice.discount.DiscountFactory;
+import com.software.paymentservice.response.Response;
 import com.software.paymentservice.user.UserController;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminController {
 
-    public String addDiscount(String choice,String serviceName,int amount) {
+    public Response addDiscount(String choice,String serviceName,int amount) {
         Discount discount;
         DiscountFactory discountFactory = new DiscountFactory();
         discount = discountFactory.create(choice);
         discount.addDiscount(serviceName,amount);
-        return "Added Successfully..";
+        return new Response("Added Successfully..","");
     }
 
-    public String refundResponse(int id, int op) {
+    public Response refundResponse(int id, int op) {
         SavedData obj = SavedData.getObj();
-        if (!obj.getRefundService().containsKey(id)) return "Wrong service ID";
+        if (!obj.getRefundService().containsKey(id)) return new Response("Wrong service ID","");
         UserController userController = obj.getRefundService().get(id);
         if (op == 1) {
             Map<Integer, ServiceStatePair> current = obj.usersCompleteService.get(userController.getUserModel().getEmail());
             userController.getUserModel().getMyWallet().add(current.get(id).service.getCost());
             obj.usersCompleteService.get(userController.getUserModel().getEmail()).get(id).setState(1);
             obj.getRefundService().remove(id);
-            return "Refund accepted";
+            return new Response("Refund accepted","");
         } else {
             obj.usersCompleteService.get(userController.getUserModel().getEmail()).get(id).setState(-1);
             obj.getRefundService().remove(id);
-            return "Refund rejected";
+            return new Response("Refund rejected","");
         }
     }
 
-    public String showRefund() {
-        String s = "";
+    public Response showRefund() {
+        ArrayList<String> s =new ArrayList<>();
         SavedData obj = SavedData.getObj();
         for (Entry<Integer, UserController> currentRefund : SavedData.getObj().getRefundService().entrySet()) {
-            s += (currentRefund.getKey() + " ");
+            String temp="";
+            temp+= ("ID: "+currentRefund.getKey() + " ");
             int Id = currentRefund.getKey();
             UserController userController = currentRefund.getValue();
             Map<Integer, ServiceStatePair> current = obj.usersCompleteService.get(userController.getUserModel().getEmail());
-            s += (current.get(Id).service.getName() + '\n');
+            temp += ("service name: "+current.get(Id).service.getName() );
+            s.add(temp);
         }
         if (s.isEmpty())
-            return "Empty";
+            return new Response("Empty",s);
         else
-            return s;
+            return new Response("Done..",s);
     }
 
-    public String cashAvailability(String serviceName,boolean visible ) {
+    public Response cashAvailability(String serviceName,boolean visible ) {
         SavedData.getObj().services.get(serviceName).setCash(visible);
-        return ("cashAvailability done");
+        return new Response("cashAvailability done","");
     }
-    public String showPaymentTransaction() {
-        String s = "";
+    public Response showPaymentTransaction() {
+       ArrayList< String> s = new ArrayList<>();
         for (Entry<String, Map<Integer, ServiceStatePair>> bigMap : SavedData.getObj().getUsersCompleteService().entrySet()) {
             for (Entry<Integer, ServiceStatePair> serviceStatePair : bigMap.getValue().entrySet())
-                s += "Servcie: " + serviceStatePair.getValue().service.getName() + ", with cost: " + serviceStatePair.getValue().service.getCost() + '\n';
+                s.add( "Service: " + serviceStatePair.getValue().service.getName() + ", with cost: " + serviceStatePair.getValue().service.getCost());
         }
         if (s.isEmpty())
-            return "Empty";
+            return new Response("Empty","");
         else
-            return s;
+            return new Response("Done..",s);
     }
 
-    public String showAddToWalletTransaction() {
-        String s = "";
-        for (Entry<String, String> entry : SavedData.getObj().getWalletTransactions().entrySet()) {
-            s += entry.getValue();
+    public Response showAddToWalletTransaction() {
+
+        ArrayList<String>s=new ArrayList<>();
+        for (Entry<String, ArrayList<String>> entry : SavedData.getObj().getWalletTransactions().entrySet()) {
+            for (int i = 0; i < entry.getValue().size(); i++) {
+                s.add( entry.getValue().get(i));
+            }
+
         }
         if (s.isEmpty())
-            return "Empty";
+            return new Response( "Empty","");
         else
-            return s;
+            return new Response("Done",s);
 
     }
 
-    public String showRefundTransaction() {
-        String s = "";
-        for (Entry<Integer, UserController> currentRefund : SavedData.getObj().getRefundService().entrySet()) {
-            s += "Service with ID:" + currentRefund.getKey() + ", with name " +
-                    SavedData.getObj().getUsersCompleteService().get(currentRefund.getValue().getUserModel().getEmail()).get(currentRefund.getKey())
-                            .service.getName() + "made by :" +
-                    currentRefund.getValue().getUserModel().getUserName() + '\n';
+    public Response showRefundTransaction() {
+
+        ArrayList<String>s=new ArrayList<>();
+        for (Entry<String, ArrayList<String>> currentRefund : SavedData.getObj().getRefundTransactions().entrySet()) {
+            for (int i = 0; i < currentRefund.getValue().size(); i++) {
+                s.add(currentRefund.getValue().get(i));
+            }
+
         }
         if (s.isEmpty())
-            return "Empty";
+            return new Response("Empty","");
         else
-            return s;
+            return new Response("Done",s);
     }
 
 }

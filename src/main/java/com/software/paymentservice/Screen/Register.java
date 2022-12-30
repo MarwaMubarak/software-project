@@ -10,7 +10,8 @@ public class Register implements Command {
     }
 
     public String excute() {
-        return (this.accountController.signUp(accountController.getAccountModel().getUserName(), accountController.getAccountModel().getUserEmail(), accountController.getAccountModel().getPassword()));
+        return "";
+        //(this.accountController.signUp(accountController.getAccountModel().getUserName(), accountController.getAccountModel().getUserEmail(), accountController.getAccountModel().getPassword()));
     }
 
 }

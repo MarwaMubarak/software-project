@@ -3,15 +3,20 @@ package com.software.paymentservice.response;
 
 public class Response {
 
-	private boolean status;
 	private String message;
+	private Object body;
 
-	public boolean isStatus() {
-		return status;
+	public Response( String message, Object object) {
+		this.message = message;
+		this.body = object;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public Object getBody() {
+		return body;
+	}
+
+	public void setBody(Object body) {
+		this.body = body;
 	}
 
 	public String getMessage() {

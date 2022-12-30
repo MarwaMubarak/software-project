@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.software.paymentservice.Data.*;
 import com.software.paymentservice.account.AccountController;
+import com.software.paymentservice.response.Response;
 import com.software.paymentservice.service.*;
 
 
@@ -25,74 +26,81 @@ public class UserController {
     }
 
 
-    public String showCompleteService() {
+    public Response showCompleteService() {
         int empty = 0;
-        String s = "";
-        Vector<String> vs = new Vector<>();
+        ArrayList<String>s=new ArrayList<>();
         for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
-            if (current.getValue().getState() == 0) {
-                s += "ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + "\n";
-                vs.add("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + "\n");
+            //if (current.getValue().getState() == 0) {
+                s.add("ID:" + current.getKey() + "   Service Name: " + current.getValue().service.getName());
                 empty++;
-            }
+           // }
         }
         if (empty == 0) {
-            return ("Empty..");
+            return (new Response("Empty..",""));
         }
-        return s;
+        return new Response("Done..",s);
     }
 
-    public String showPendingRequest() {
+    public Response showPendingRequest() {
         int empty = 0;
-        String s = "";
+        ArrayList<String>s=new ArrayList<>();
         for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
             if (current.getValue().getState() == 2) {
-                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                s.add ("ID:" + current.getKey() + "   Service Name: " + current.getValue().service.getName());
                 empty++;
             }
         }
         if (empty == 0)
-            return ("Empty..");
-        return s;
+            return new Response("Empty..","");
+        return new Response("Done..",s);
     }
 
-    public String showAcceptedService() {
+    public Response showAcceptedService() {
         int empty = 0;
-        String s = "";
+        ArrayList<String>s=new ArrayList<>();
         for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
             if (current.getValue().getState() == 1) {
-                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                s .add ("ID:" + current.getKey() + "    Service Name: " + current.getValue().service.getName());
                 empty++;
             }
         }
         if (empty == 0)
-            return ("Empty..");
-        return s;
+            return new Response("Empty..","");
+        return new Response("Done..",s);
 
     }
 
-    public String showRejectedRequest() {
+    public Response showRejectedRequest() {
         int empty = 0;
-        String s = "";
+        ArrayList<String>s=new ArrayList<>();
         for (Map.Entry<Integer, ServiceStatePair> current : userModel.getCompleteServices().entrySet()) {
             if (current.getValue().getState() == -1) {
-                s += ("ID:" + current.getKey() + "\t Service Name: " + current.getValue().service.getName() + '\n');
+                s.add ("ID:" + current.getKey() + "   Service Name: " + current.getValue().service.getName() );
                 empty++;
             }
         }
         if (empty == 0)
-            return ("Empty..");
-        return s;
+            return new Response("Empty..","");
+        return new Response("Done..",s);
     }
 
 
-    public String refund(Integer ID) {
+    public Response refund(Integer ID) {
         if (!userModel.getCompleteServices().containsKey(ID)) {
-            return "Invalid service id !";
+            return new Response( "Invalid service id !","");
         }
         SavedData.getObj().getRefundService().put(ID, AccountController.userController);
         userModel.getCompleteServices().get(ID).setState(2);
-        return "Your request is pending... ";
+        if( SavedData.getObj().getRefundTransactions().containsKey(userModel.getEmail()))
+            SavedData.getObj().getRefundTransactions().get(userModel.getEmail()).add("service ID: "+ID+" service name"+userModel.getCompleteServices().get(ID).service.getName());
+        else{
+            ArrayList<String>arr=new ArrayList<>();
+            arr.add("service ID: "+ID+" service name: "+userModel.getCompleteServices().get(ID).service.getName());
+            SavedData.getObj().getRefundTransactions().put(userModel.getEmail(),arr);
+
+
+        }
+        return new Response("Your request is pending... ","");
     }
 
     public void addCompeleteServices(Service service) {
@@ -102,30 +110,35 @@ public class UserController {
 
     }
 
-    public String addMoneyToWallet(Integer amount) {
+    public Response addMoneyToWallet(Integer amount) {
         if (userModel.getMyCreditCard().getBalance() >= amount) {
             userModel.getMyCreditCard().spend(amount);
             userModel.getMyWallet().add(amount);
-            String s= SavedData.getObj().getWalletTransactions().get(userModel.getEmail());
-            s+=userModel.getEmail()+" Added "+amount+"\n";
-            SavedData.getObj().getWalletTransactions().put(userModel.getEmail(),s);
-            return ("Done Successfully..");
+            if( SavedData.getObj().getWalletTransactions().containsKey(userModel.getEmail())) {
+                SavedData.getObj().getWalletTransactions().get(userModel.getEmail()).add(userModel.getEmail()+" Added "+amount);
+            }else{
+                ArrayList<String>arr=new ArrayList<>();
+                arr.add(userModel.getEmail()+" Added "+amount);
+                SavedData.getObj().getWalletTransactions().put(userModel.getEmail(),arr);
+            }
+
+            return new Response("Done Successfully..","");
 
         } else
-            return ("There is not money..");
+            return new Response("There is not money..","");
     }
 
-    public String showDiscounts() {
+    public Response showDiscounts() {
         int noDiscounts = 0;
-        String s = "";
+        ArrayList<String>s=new ArrayList<>();
         for (Map.Entry<String, Service> service : SavedData.getObj().services.entrySet()) {
-            s += (service.getKey() + ": " + service.getValue().getDiscounts() * 100 + "%\n");
+            s.add (service.getKey() + ": " + service.getValue().getDiscounts() * 100 + "%");
             if (service.getValue().getDiscounts() != 0.0)
                 noDiscounts++;
         }
         if (noDiscounts == 0)
-            return ("There is no discounts..");
-        return s;
+            return new Response("There is no discounts..","");
+        return new Response("Done..",s);
 
     }
 }
