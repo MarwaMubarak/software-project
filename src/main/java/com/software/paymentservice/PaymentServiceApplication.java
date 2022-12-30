@@ -9,9 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PaymentServiceApplication {
 
 	public static void main(String[] args) {
-//		UserController user = new UserController("d","doha","123");
-//		SavedData.getObj().getUserData().put("d",user);
-
 		SpringApplication.run(PaymentServiceApplication.class, args);
 	}
 

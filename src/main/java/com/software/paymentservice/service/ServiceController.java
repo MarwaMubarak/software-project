@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServiceController {
 
-    @RequestMapping(value = "/serve",method = RequestMethod.GET)
+    @RequestMapping(value = "/serve",method = RequestMethod.POST)
     public Response serve(@RequestBody ServiceInputModel serviceInputModel) {
         return SavedData.getObj().services.get(serviceInputModel.getServiceName()).serve(serviceInputModel);
     }

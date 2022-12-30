@@ -7,6 +7,8 @@ import com.software.paymentservice.account.AccountController;
 import com.software.paymentservice.response.Response;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 public abstract class Service {
     static public int id;
     public double cost;
@@ -93,18 +95,18 @@ public abstract class Service {
 
     abstract public String getName();
 
-    public String getInfo() {
-        String S = "";
-        S += ("----------------------------------------------------------\n");
-        S += ("Service Name: " + this.getName() + '\n');
-        S += ("Service Id: " + id + '\n');
-        S += ("Payment Way: " + payment.getName() + '\n');
-        S += ("Service Provider: " + provider.getName() + '\n');
-        S += ("Discounts: " + getDiscounts() * 100 + "%" + '\n');
-        S += ("Payment Taxes: " + payment.getTaxes() + "LE" + '\n');
-        S += ("Service Total Cost: " + cost + "LE" + '\n');
-        S += ("----------------------------------------------------------" + '\n');
-        return S;
+    public ArrayList<String> getInfo() {
+        ArrayList<String>curr=new ArrayList<String>();
+        curr.add("----------------------------------------------------------");
+        curr.add("Service Name: " + this.getName() );
+        curr.add("Service Id: " + id );
+        curr.add("Payment Way: " + payment.getName() );
+        curr.add("Service Provider: " + provider.getName() );
+        curr.add("Discounts: " + getDiscounts() * 100 + "%" );
+        curr.add("Payment Taxes: " + payment.getTaxes() + "LE" );
+        curr.add("Service Total Cost: " + cost + "LE" );
+        curr.add("----------------------------------------------------------" );
+        return curr;
     }
 
 

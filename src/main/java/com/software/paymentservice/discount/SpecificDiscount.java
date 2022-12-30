@@ -3,7 +3,6 @@ package com.software.paymentservice.discount;
 import java.util.Scanner;
 
 import com.software.paymentservice.Data.SavedData;
-import com.software.paymentservice.Screen.UI;
 import com.software.paymentservice.service.DiscountDecorator;
 import com.software.paymentservice.service.Service;
 
