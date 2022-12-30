@@ -1,7 +1,5 @@
 package com.software.paymentservice.payment;
 
-import java.util.Scanner;
-
 public class PaymentFactory {
     public Payment create(int ID) {
 
@@ -10,7 +8,7 @@ public class PaymentFactory {
         else if (ID == 2)
             return new WalletPayment();
         else if (ID == 3)
-            return new CashPaymnet();
+            return new CashPayment();
         else
             return null;
 

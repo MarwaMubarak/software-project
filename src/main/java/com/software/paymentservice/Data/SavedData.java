@@ -1,6 +1,11 @@
 package com.software.paymentservice.Data;
 
 import com.software.paymentservice.account.AccountController;
+import com.software.paymentservice.payment.CashPayment;
+import com.software.paymentservice.payment.CreditPayment;
+import com.software.paymentservice.payment.Payment;
+import com.software.paymentservice.payment.WalletPayment;
+import com.software.paymentservice.provider.ServiceProvider;
 import com.software.paymentservice.user.*;
 
 import java.util.*;
@@ -9,9 +14,21 @@ import com.software.paymentservice.service.*;
 
 public class SavedData {
 
-    public Map<String, Map<Integer, ServiceStatePair>> usersCompleteService;
+    private static SavedData savedData = null;
+    public String baseUrl="http://localhost:8080";
 
+    public Map<String, Map<Integer, ServiceStatePair>> usersCompleteService;
     public Map<String, Service> services;
+    public Payment payment;
+    public ServiceProvider serviceProvider;
+
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
 
     private Map<Integer, UserController> refundServices;
 
@@ -29,7 +46,6 @@ public class SavedData {
 
     private Map<String, ArrayList<String>> walletTransactions;
 
-    private static SavedData savedData = null;
 
 
     public Map<Integer, UserController> getRefundService() {
@@ -56,6 +72,18 @@ public class SavedData {
         return savedData;
     }
 
+    public Map<String, Service> getServices() {
+        return services;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     public Map<String, UserController> getUserData() {
         return userData;
     }
@@ -71,6 +99,8 @@ public class SavedData {
     public void setUsersCompleteService(Map<Integer, ServiceStatePair> userCompliete) {
         usersCompleteService.put(AccountController.userController.getUserModel().getEmail(), userCompliete);
     }
-
+    public String getBaseUrl() {
+        return baseUrl;
+    }
 
 }

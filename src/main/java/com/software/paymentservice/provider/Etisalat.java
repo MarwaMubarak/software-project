@@ -1,5 +1,7 @@
 package com.software.paymentservice.provider;
 
+import com.software.paymentservice.response.Response;
+
 public class Etisalat extends ServiceProvider{
 	String phoneNumber;
 	@Override
@@ -7,9 +9,10 @@ public class Etisalat extends ServiceProvider{
 		return "Etisalat";
 	}
 	@Override
-	public void setInfo(double amount, String info) {
+	public Response setInfo(double amount, String info) {
 		phoneNumber = info;
-		money+=amount;		
+		money+=amount;
+		return new Response("Done successfully..","");
 	}
 	
 }

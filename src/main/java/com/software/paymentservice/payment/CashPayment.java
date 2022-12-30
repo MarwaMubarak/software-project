@@ -1,13 +1,13 @@
 package com.software.paymentservice.payment;
 
-import java.util.Scanner;
+import com.software.paymentservice.response.Response;
 
-public class CashPaymnet implements Payment {
+public class CashPayment implements Payment {
     @Override
-    public double pay(double discount, double amount) {
+    public Response pay(double discount, double amount) {
 
         double amountAfterDiscounts = (1 - discount) * amount;
-        return amountAfterDiscounts;
+        return new Response("Done..",amountAfterDiscounts);
     }
 
     @Override

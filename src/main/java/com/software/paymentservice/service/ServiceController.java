@@ -13,7 +13,7 @@ public class ServiceController {
 
     @RequestMapping(value = "/serve",method = RequestMethod.POST)
     public Response serve(@RequestBody ServiceInputModel serviceInputModel) {
-        return SavedData.getObj().services.get(serviceInputModel.getServiceName()).serve(serviceInputModel);
+        return SavedData.getObj().getServices().get(serviceInputModel.getServiceName()).serve(serviceInputModel);
     }
 
 

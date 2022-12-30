@@ -1,22 +1,24 @@
 package com.software.paymentservice.payment;
 
 import java.util.Scanner;
+import java.util.spi.ResourceBundleProvider;
 
 import com.software.paymentservice.account.AccountController;
+import com.software.paymentservice.response.Response;
 
 
 public class CreditPayment implements Payment {
 
     @Override
-    public double pay(double discount, double amount) {
+    public Response pay(double discount, double amount) {
 
         double amountAfterDiscounts = (1 - discount) * amount;
         if (AccountController.userController.getUserModel().getMyCreditCard().getBalance() >= amountAfterDiscounts + getTaxes()) {
             AccountController.userController.getUserModel().getMyCreditCard().spend(amountAfterDiscounts + getTaxes());
-            return amountAfterDiscounts + getTaxes();
+            return new Response("Done Successfully...",amountAfterDiscounts + getTaxes());
         } else {
-            System.out.println("There is Not Enough Money");
-            return -1;
+            //System.out.println("There is Not Enough Money");
+            return new Response("There is Not Enough Money",-1);
         }
 
 

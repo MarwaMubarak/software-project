@@ -6,17 +6,14 @@ package com.software.paymentservice.service;
     double amount;
     String serviceName;
     String info;
-    public ServiceInputModel()
-    {
-
-    }
+    public ServiceInputModel() {}
     public ServiceInputModel(int paymentWayID, int serviceProviderID, double amount, String info,String serviceName) {
         this.paymentWayID = paymentWayID;
         this.serviceProviderID = serviceProviderID;
         this.amount = amount;
         this.serviceName=serviceName;
         if (info == null)
-            this.info = " ";
+            this.info = "";
         else
             this.info = info;
     }
@@ -26,7 +23,6 @@ package com.software.paymentservice.service;
         this.serviceProviderID = serviceProviderID;
         this.amount = amount;
         this.serviceName=serviceName;
-
         this.info = "";
     }
 

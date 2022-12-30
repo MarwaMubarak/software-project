@@ -1,5 +1,7 @@
 package com.software.paymentservice.provider;
 
+import com.software.paymentservice.response.Response;
+
 public class CancerHospital extends ServiceProvider {
 
     @Override
@@ -8,8 +10,9 @@ public class CancerHospital extends ServiceProvider {
     }
 
     @Override
-    public void setInfo(double amount, String info) {
+    public Response setInfo(double amount, String info) {
         money += amount;
+        return new Response("Done Successfully..","");
     }
 
 

@@ -5,7 +5,7 @@ public class Response {
 
 	private String message;
 	private Object body;
-
+	Response(){}
 	public Response( String message, Object object) {
 		this.message = message;
 		this.body = object;

@@ -1,5 +1,7 @@
 package com.software.paymentservice.provider;
 
+import com.software.paymentservice.response.Response;
+
 public class Orange extends ServiceProvider{
 	String phoneNumber;
 	@Override
@@ -7,9 +9,11 @@ public class Orange extends ServiceProvider{
 		return "Orange";
 	}
 	@Override
-	public void setInfo(double amount, String info) {
+	public Response setInfo(double amount, String info) {
 		phoneNumber = info;
 		money+=amount;
+		return new Response("Done successfully..","");
+
 	}
 
 }
