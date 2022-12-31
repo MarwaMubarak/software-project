@@ -123,7 +123,7 @@ public class UserController {
             return new Response("Done Successfully..", "");
 
         } else
-            return new Response("There is not money..", "");
+            return new Response("There is not enough money..", "");
     }
 
     public Response showDiscounts() {
