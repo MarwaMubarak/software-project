@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "5d2d2de8-f2d6-4d48-8dce-256251691320",
+		"name": "MoneySystem",
+		"description": "money system like fawry system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19882389"
+	},
+	"item": [
+		{
+			"name": "account api",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userEmail\":\"mrmr@gmail.com\",\r\n    \"userName\":\"m\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/signUp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"signUp"
+							]
+						},
+						"description": "to sign up -> enter the above url with the following body\n\n(if the user already exisit return failed else return that succefully signed up)"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userEmail\":\"mrmr@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						},
+						"description": "to login -> write the above url with the following body\n\n(if the user doesn't exixt return faild else return the user)"
+					},
+					"response": []
+				}
+			],
+			"description": "the operation that the user can do"
+		},
+		{
+			"name": "user api",
+			"item": [
+				{
+					"name": "showCompleteService",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showCompleteService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showCompleteService"
+							]
+						},
+						"description": "to show Complete Services-- write the above URL with value of paramter id ->(int)\n\n(any successful service has done by the user will be displayed ,if there is no service done return empty)"
+					},
+					"response": []
+				},
+				{
+					"name": "refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/refund?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refund"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "to make Refund-- write the above URL with value of paramter id ->(int) which you want to be refunded\n\n(any successful refund process return request Pending when this id contains in complete services else return invalid id)"
+					},
+					"response": []
+				},
+				{
+					"name": "showPendingRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showPendingRequest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showPendingRequest"
+							]
+						},
+						"description": "to show Pending Request-- write the above URL\n\n(any pending request has done by the admin will be displayed ,if there is no pending request return empty)"
+					},
+					"response": []
+				},
+				{
+					"name": "showRejectedRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showRejectedRequest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showRejectedRequest"
+							]
+						},
+						"description": "to show rejected Request-- write the above URL\n\n(any rejected request has done by the admin will be displayed ,if there is no rejected request return empty)"
+					},
+					"response": []
+				},
+				{
+					"name": "showAcceptedService",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showAcceptedService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showAcceptedService"
+							]
+						},
+						"description": "to show accepted Request-- write the above URL\n\n(any accepted request has done by the admin will be displayed ,if there is no accepted request return empty)"
+					},
+					"response": []
+				},
+				{
+					"name": "addToWallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/addToWallet?amount=43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addToWallet"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "43"
+								}
+							]
+						},
+						"description": "to add money to user's wallet write the above URL with paramter amount->(int)\n\n(if his credit card has enough money to add this amount in wallet return done successfully else return there isn't enough money)"
+					},
+					"response": []
+				},
+				{
+					"name": "showDiscounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showDiscounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showDiscounts"
+							]
+						},
+						"description": "to show discounts ---write the above URL\n\n(if there is discounts added by the admin retun this discounts,else return there is no discount )"
+					},
+					"response": []
+				},
+				{
+					"name": "serve",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentWayID\":1,\r\n    \"serviceProviderID\":2,\r\n    \"amount\":15,\r\n    \"info\":\"01112247338\",\r\n    \"serviceName\":\"Landline\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/serve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"serve"
+							]
+						},
+						"description": "to serve any service ---write the above URL with the following body\n\n(return done succesfully and the service recipt if we can do the service,else return message with the reseaon of why it is not completed)"
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/search?id=r",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "r"
+								}
+							]
+						},
+						"description": "to search about any service ---write the above URL with id parameter\n\n(it will return the results that contains the id,if there is not return Not Found)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin api",
+			"item": [
+				{
+					"name": "ShowRefund",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showRefund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showRefund"
+							]
+						},
+						"description": "to show the current refund requests that require response --->write the above url\n\n(return the refund requests if there is else return empty )"
+					},
+					"response": []
+				},
+				{
+					"name": "Refund Response",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/refundResponse?id=1&op=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refundResponse"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "op",
+									"value": "2"
+								}
+							]
+						},
+						"description": "to accept or reject any refund request --> write the above url with 2paramters: id(the id of the service) and the op(write 1 to accept the requet and write 2 to reject it )\n\n(it witll return the refund accepted or rejected or invalid id)"
+					},
+					"response": []
+				},
+				{
+					"name": "showPaymentTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showPaymentTransaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showPaymentTransaction"
+							]
+						},
+						"description": "write the above url to show payment transactions\n\n(if it is empty return empty,else return list of the payment transactions )"
+					},
+					"response": []
+				},
+				{
+					"name": "cashAvailability",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cashAvailability?serviceName=Landline&visible=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cashAvailability"
+							],
+							"query": [
+								{
+									"key": "serviceName",
+									"value": "Landline"
+								},
+								{
+									"key": "visible",
+									"value": "false"
+								}
+							]
+						},
+						"description": "to set the avilability of cash of any service write the above url with the following parameters\n\nserviceName and visible(true or false)\n\n(return done if the service found ,else return not found)"
+					},
+					"response": []
+				},
+				{
+					"name": "addDiscount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/addDiscount?choice=1&amount=10&serviceName=Landline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addDiscount"
+							],
+							"query": [
+								{
+									"key": "choice",
+									"value": "1"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								},
+								{
+									"key": "serviceName",
+									"value": "Landline"
+								}
+							]
+						},
+						"description": "to add discount write the above url with the following paramters\n\nchoice(1 to specific discount or 2 to add to all services) and amount (the discount like 0.1 for 10%)and the serviceName(write it if you choose option 1)"
+					},
+					"response": []
+				},
+				{
+					"name": "showRefundTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showRefundTransaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showRefundTransaction"
+							]
+						},
+						"description": "to show refund transactions -->write the above url\n\n(if the list is empty return empty else return the list)"
+					},
+					"response": []
+				},
+				{
+					"name": "showAddToWalletTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showAddToWalletTransaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showAddToWalletTransaction"
+							]
+						},
+						"description": "to show add to wallet transactions -->write the above url\n\n(if the list is empty return empty else return the list)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "pay",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pay?amount=15&discount=0.1&paymentWay=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pay"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "15"
+								},
+								{
+									"key": "discount",
+									"value": "0.1"
+								},
+								{
+									"key": "paymentWay",
+									"value": "3"
+								}
+							]
+						},
+						"description": "to pay any service -->write the above url with the following paramters\n\namount(the amount you want to spend) ,discount(the discount on the service) ,paymentWay(to check if it is valid to pay by it or no)\n\nif you have the amount return done successfully else return there is not enough money"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "provider",
+			"item": [
+				{
+					"name": "setInfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/setInfo?amount=10&info=012234455&providerId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"setInfo"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "10"
+								},
+								{
+									"key": "info",
+									"value": "012234455"
+								},
+								{
+									"key": "providerId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "to send the info and the amount required to the service provider write the above url with the parameters amount(the amount of money),info(the phone number),and providerId(to specify provider)"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
