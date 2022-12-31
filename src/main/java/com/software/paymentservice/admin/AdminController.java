@@ -61,8 +61,12 @@ public class AdminController {
     }
 
     public Response cashAvailability(String serviceName, boolean visible) {
-        SavedData.getObj().getServices().get(serviceName).setCash(visible);
-        return new Response("cashAvailability done", "");
+        if( SavedData.getObj().getServices().containsKey(serviceName))
+        {
+            SavedData.getObj().getServices().get(serviceName).setCash(visible);
+            return new Response("cashAvailability done", "");
+        }else
+            return new Response("Not Found This Service","");
     }
 
     public Response showPaymentTransaction() {
