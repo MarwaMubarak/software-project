@@ -1,6 +1,5 @@
 package com.software.paymentservice.service;
 
-import com.software.paymentservice.Data.NameServicePair;
 import com.software.paymentservice.Data.SavedData;
 import com.software.paymentservice.response.Response;
 import jakarta.websocket.server.PathParam;
