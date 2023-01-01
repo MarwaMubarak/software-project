@@ -1,7 +1,5 @@
 package com.software.paymentservice.provider;
 
-import java.util.Scanner;
-
 public class LandlineProviderFactory implements ServiceProviderFactory {
     @Override
     public ServiceProvider create(int ID) {

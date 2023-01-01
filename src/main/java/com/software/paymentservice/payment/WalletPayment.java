@@ -1,7 +1,5 @@
 package com.software.paymentservice.payment;
 
-import java.util.Scanner;
-
 import com.software.paymentservice.account.AccountController;
 import com.software.paymentservice.response.Response;
 

@@ -1,7 +1,5 @@
 package com.software.paymentservice.discount;
 
-import java.util.Scanner;
-
 public class DiscountFactory {
 
     public Discount create(String choice) {

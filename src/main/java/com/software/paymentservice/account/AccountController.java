@@ -6,8 +6,6 @@ import com.software.paymentservice.user.UserController;
 import com.software.paymentservice.user.UserModel;
 import org.springframework.stereotype.Service;
 
-import java.lang.String;
-
 @Service
 public class AccountController {
 

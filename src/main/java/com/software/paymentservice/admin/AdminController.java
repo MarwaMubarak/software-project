@@ -1,11 +1,5 @@
 package com.software.paymentservice.admin;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Scanner;
-
-
 import com.software.paymentservice.Data.SavedData;
 import com.software.paymentservice.Data.ServiceStatePair;
 import com.software.paymentservice.discount.Discount;
@@ -13,6 +7,10 @@ import com.software.paymentservice.discount.DiscountFactory;
 import com.software.paymentservice.response.Response;
 import com.software.paymentservice.user.UserController;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
 
 @Service
 public class AdminController {

@@ -1,19 +1,11 @@
 package com.software.paymentservice.admin;
 
-import com.software.paymentservice.Data.SavedData;
-import com.software.paymentservice.Data.ServiceStatePair;
-
-import com.software.paymentservice.discount.Discount;
-import com.software.paymentservice.discount.DiscountFactory;
 import com.software.paymentservice.response.Response;
-import com.software.paymentservice.user.UserController;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-import java.util.Scanner;
+import javax.websocket.server.PathParam;
 
 @RestController
 public class AdminServiceController {

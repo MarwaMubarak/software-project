@@ -2,12 +2,14 @@
 package com.software.paymentservice.service;
 
 import com.software.paymentservice.Data.SavedData;
-import com.software.paymentservice.payment.*;
-import com.software.paymentservice.provider.*;
 import com.software.paymentservice.account.AccountController;
+import com.software.paymentservice.payment.CreditPayment;
+import com.software.paymentservice.payment.Payment;
+import com.software.paymentservice.payment.PaymentFactory;
+import com.software.paymentservice.provider.FactoryOfServiceProviderFactory;
+import com.software.paymentservice.provider.ServiceProvider;
+import com.software.paymentservice.provider.ServiceProviderFactory;
 import com.software.paymentservice.response.Response;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;

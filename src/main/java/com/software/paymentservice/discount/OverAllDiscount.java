@@ -1,13 +1,11 @@
 package com.software.paymentservice.discount;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Map.Entry;
-
 import com.software.paymentservice.Data.SavedData;
 import com.software.paymentservice.service.DiscountDecorator;
 import com.software.paymentservice.service.Service;
+
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 public class OverAllDiscount implements Discount {
 

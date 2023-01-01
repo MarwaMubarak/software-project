@@ -1,7 +1,5 @@
 package com.software.paymentservice.provider;
 
-import java.util.Scanner;
-
 public class InternetProviderFactory implements ServiceProviderFactory {
 
     @Override

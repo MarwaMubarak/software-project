@@ -1,8 +1,5 @@
 package com.software.paymentservice.account;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 public class AccountModel {
 
     private String userEmail;
