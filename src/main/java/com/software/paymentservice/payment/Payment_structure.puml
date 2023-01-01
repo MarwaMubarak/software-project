@@ -1,0 +1,437 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.software.paymentservice.payment.Payment",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1319330215 { 
+   	label=software
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1621773034 { 
+   	label=paymentservice
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AccountController1394249960[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AccountController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   accountModel: AccountModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   saveData: SavedData [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(email: String, password: String): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ signUp(userName: String, email: String, password: String): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+AccountServiceController1394249960[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AccountServiceController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   accountController: AccountController [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ login(accountModel: AccountModel): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ signUp(accountModel: AccountModel): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CashPayment1784887489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CashPayment</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ pay(discount: double, amount: double): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CreditCard615831280[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CreditCard</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   balance: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cardNumber: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(amount: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ spend(amount: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CreditPayment1784887489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CreditPayment</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ pay(discount: double, amount: double): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DiscountDecorator260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DiscountDecorator</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DonationService260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DonationService</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+InternetPaymentService260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)InternetPaymentService</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LandlineService260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LandlineService</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MobileRechargeService260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MobileRechargeService</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NameServicePair614354671[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NameServicePair</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   service: Service [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Payment1784887489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)Payment</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTaxes(): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pay(discount: double, amount: double): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+SavedData614354671[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SavedData</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   baseUrl: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   payment: Payment [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   refundServices: Map&lt;Integer, UserController&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   refundTransactions: Map&lt;String, ArrayList&lt;String&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   serviceProvider: ServiceProvider [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   services: Map&lt;String, Service&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userData: Map&lt;String, UserController&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   usersCompleteService: Map&lt;String, Map&lt;Integer, ServiceStatePair&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   walletTransactions: Map&lt;String, ArrayList&lt;String&gt;&gt; [0..*]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Service260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Service</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   cash: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   cost: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   discount: Double [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   payment: Payment [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   provider: ServiceProvider [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ infoRequest(amount: double, info: String, providerId: int): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ payRequest(discount: double, amount: double, paymentWay: int): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serve(serviceInputModel: ServiceInputModel): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ServiceDecorator260754800[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ServiceDecorator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   newDiscount: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   service: Service [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ServiceStatePair614354671[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ServiceStatePair</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   service: Service [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   state: Integer [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserController615831280[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   userModel: UserModel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addCompeleteServices(service: Service)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addMoneyToWallet(amount: Integer): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ refund(ID: Integer): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showAcceptedService(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showCompleteService(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showDiscounts(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showPendingRequest(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showRejectedRequest(): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserModel615831280[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserModel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   completeServices: Map&lt;Integer, ServiceStatePair&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myCreditCard: CreditCard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myWallet: Wallet [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userName: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UserServiceController615831280[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UserServiceController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   accountController: AccountController [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addMoneyToWallet(amount: int): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ refund(id: int): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showAcceptedService(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showCompleteService(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showDiscounts(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showPendingRequest(): Response</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showRejectedRequest(): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Wallet615831280[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Wallet</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   balance: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(amount: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ spend(amount: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+WalletPayment1784887489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)WalletPayment</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ pay(discount: double, amount: double): Response</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AccountController1394249960 -> SavedData614354671[label="saveData
+[0..1]"];
+AccountServiceController1394249960 -> AccountController1394249960[label="accountController
+[0..1]"];
+CreditPayment1784887489 -> CreditCard615831280[label="pay() -> spend()"];
+NameServicePair614354671 -> Service260754800[label="service
+[0..1]"];
+Payment1784887489 -> CashPayment1784887489[arrowhead=none, arrowtail=empty, dir=both];
+Payment1784887489 -> CreditPayment1784887489[arrowhead=none, arrowtail=empty, dir=both];
+Payment1784887489 -> WalletPayment1784887489[arrowhead=none, arrowtail=empty, dir=both];
+SavedData614354671 -> Payment1784887489[label="payment
+[0..1]"];
+SavedData614354671 -> Service260754800[label="services
+[0..*]"];
+SavedData614354671 -> ServiceStatePair614354671[label="usersCompleteService
+[0..*]"];
+Service260754800 -> DonationService260754800[arrowhead=none, arrowtail=empty, dir=both];
+Service260754800 -> InternetPaymentService260754800[arrowhead=none, arrowtail=empty, dir=both];
+Service260754800 -> LandlineService260754800[arrowhead=none, arrowtail=empty, dir=both];
+Service260754800 -> MobileRechargeService260754800[arrowhead=none, arrowtail=empty, dir=both];
+Service260754800 -> Payment1784887489[label="payment
+[0..1]"];
+Service260754800 -> ServiceDecorator260754800[arrowhead=none, arrowtail=empty, dir=both];
+ServiceDecorator260754800 -> DiscountDecorator260754800[arrowhead=none, arrowtail=empty, dir=both];
+ServiceDecorator260754800 -> Service260754800[label="service
+[0..1]"];
+ServiceStatePair614354671 -> Service260754800[label="service
+[0..1]"];
+UserController615831280 -> UserModel615831280[label="userModel
+[0..1]"];
+UserModel615831280 -> ServiceStatePair614354671[label="completeServices
+[0..*]"];
+UserServiceController615831280 -> AccountController1394249960[label="accountController
+[0..1]"];
+WalletPayment1784887489 -> Wallet615831280[label="pay() -> spend()"];
+    
+}
+@enduml
